@@ -1,0 +1,36 @@
+---
+title: "Quick Start"
+author: "Tomás Acuña"
+date: "1/16/2021"
+output: html_document
+---
+
+```{r setup}
+library(ASAPI)
+library(jsonlite)
+
+Sys.setenv("api_key"="as135as")
+
+email = "tomasacuna@agrospace.cl"
+password = "as1234"
+auth = asapi_auth(email = email,password = password)
+
+
+```
+
+## AgroSpace API
+
+
+```{r cars}
+print(auth)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

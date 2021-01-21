@@ -1,0 +1,22 @@
+Package: ASAPI
+Type: Package
+Title: AgroSpace API Connector
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Tomás",
+           family = "Acuña Ruz",
+           role = c("aut", "cre"),
+           email = "tomasacuna@ug.uchile.cl")
+URL: https://api.agrospace.cl
+Description: Retrieve spatial analysis of remote sensing and meteoological data
+License: `use_mit_license()`, `use_gpl3_license()` or friends to
+    pick a license
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports:
+    jsonlite,
+    httr,
+    raster,
+    utils
