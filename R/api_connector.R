@@ -97,8 +97,14 @@ asapi_user_get = function(client, email, user, api_key, url="https://api.agrospa
 
   res = httr::GET(url = asapi_url(url = url,endpoint = '/user'),
                   query = param_query)
-  res = asapi_json(res)
-  res$counted_calls = do.call(rbind.data.frame, res$counted_calls)
+
+  if(res$status_code==200){
+    res = asapi_json(res)
+    res$counted_calls = do.call(rbind.data.frame, res$counted_calls)
+  }else{
+    res = httr::content(res)
+  }
+
   return(res)
 }
 
@@ -119,7 +125,14 @@ asapi_client_get = function(client, email, api_key, url="https://api.agrospace.c
 
   res = httr::GET(url = asapi_url(url = url,endpoint = '/client'),
                   query = param_query)
-  return(asapi_json(res))
+
+  if(res$status_code==200){
+    res = asapi_json(res)
+    res$counted_calls = do.call(rbind.data.frame, res$counted_calls)
+  }else{
+    res = httr::content(res)
+  }
+  return(res)
 }
 
 
@@ -241,6 +254,11 @@ asapi_sensor_get = function(client, email, farm, api_key, url="https://api.agros
   #browser()
   res = httr::GET(url = asapi_url(url = url,endpoint = '/info_sensor'),
                   query = param_query)
-  res = asapi_json(res)
+
+  if(res$status_code==200){
+    res = asapi_json(res)
+    }else{
+    res = httr::content(res)
+    }
   return(res)
 }
