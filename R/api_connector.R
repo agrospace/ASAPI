@@ -18,7 +18,7 @@ asapi_construct = function(param_query = NULL, api_key=NULL){
 
   if(is.null(api_key) || length(api_key)==0 ) {
     "Please set api_key with  .Renviron file or Sys.setenv('api_key'='token')"
-    }
+  }
 
   if(is.null(param_query) || length(param_query)==0 ) {"Please fill query_params"}
 
@@ -257,8 +257,81 @@ asapi_sensor_get = function(client, email, farm, api_key, url="https://api.agros
 
   if(res$status_code==200){
     res = asapi_json(res)
-    }else{
+  }else{
     res = httr::content(res)
-    }
+  }
+  return(res)
+}
+
+#### INDEX ####
+#' The Index GET Function
+#'
+#' This function allows you to GET Index information of client
+#' @param client Client name
+#' @param farm farm name
+#' @param email email of
+#' @param sensor sensor
+#' @param api_key Api Key obtain from /auth
+#' @param url URL for dev purpose
+#' @keywords API_KEY, api_key
+#' @export
+#' @examples
+#' asapi_index_get(client="clientexample", email="user.example@agrospace.cl", farm="farm1example", sensor="S2SR", api_key="APIKEYEXAMPLE")
+asapi_index_get = function(client, email, farm, sensor, api_key, url="https://api.agrospace.cl"){
+  param_query = list(client = client,
+                     email = email,
+                     farm = farm,
+                     sensor = sensor,
+                     api_key=api_key)
+  res = httr::GET(url = asapi_url(url = url,endpoint = '/info_index'),
+                  query = param_query)
+
+  res = httr::content(res)
+  return(res)
+}
+
+#### FEATURES ####
+#' The Features GET Function
+#'
+#' This function allows you to GET Features information like Index, Labels, Class, Pallete, others.
+#' Agrospace members only, with apikey master.
+#' @param index index
+#' @param farm_type farm type
+#' @param api_key Api Key obtain from /auth
+#' @param url URL for dev purpose
+#' @keywords API_KEY, api_key
+#' @export
+#' @examples
+#' asapi_features_get(index="BIOMASS", farm_type="esmeralda", api_key="APIKEYEXAMPLE")
+asapi_features_get = function(index, farm_type, api_key, url="https://api.agrospace.cl"){
+  param_query = list(index = index,
+                     farm_type = farm_type,
+                     api_key=api_key)
+  res = httr::GET(url = asapi_url(url = url,endpoint = '/feature'),
+                  query = param_query)
+  res = do.call(cbind.data.frame, fromJSON(toJSON(httr::content(res))))
+  return(res)
+}
+
+#### LIST USER/FARM ####
+#' The List GET Function
+#'
+#' This function allows you to GET list of farms or users of a client.
+#' Agrospace members only, with apikey master.
+#' @param client Client name
+#' @param type list type: farm or user
+#' @param api_key Api Key obtain from /auth
+#' @param url URL for dev purpose
+#' @keywords API_KEY, api_key
+#' @export
+#' @examples
+#' asapi_list(client="clientexample", type="farm", api_key="APIKEYEXAMPLE")
+asapi_list = function(client, type, api_key, url="https://api.agrospace.cl"){
+  param_query = list(client = client,
+                     type = type,
+                     api_key = api_key)
+  res = httr::GET(url = asapi_url(url = url,endpoint = '/list'),
+                  query = param_query)
+  res = httr::content(res)
   return(res)
 }
