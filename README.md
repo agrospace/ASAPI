@@ -6,5 +6,3 @@ AgroSpace API R Packag Library
 
 
 
-# https://r-pkgs.org/description.html
-# https://kbroman.org/github_tutorial/
