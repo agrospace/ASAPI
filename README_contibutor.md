@@ -12,6 +12,13 @@ git push origin features
 
 # set tracking
 git branch --set-upstream-to=origin/features features
+
+#delete branch locally
+git branch -d features
+
+# delete branch remotely
+git push origin --delete features
+
 ```
 
 
