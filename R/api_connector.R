@@ -213,7 +213,7 @@ asapi_farm_put = function(param_query,  url="https://api.agrospace.cl"){
 #' @keywords API_KEY, api_key
 #' @export
 #' @examples
-#' asapi_table(client="clientexample", farm="farm1example", tableid="levelzero", sensor="S2SSR", index="NDVI", date_start="2020-11-29", date_end="2020-12-04", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE", url="https://api.agrospace.cl")
+#' asapi_table(client="clientexample", farm="farm1example", tableid="levelzero", sensor="S2SR", index="NDVI", date_start="2020-11-29", date_end="2020-12-04", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE", url="https://api.agrospace.cl")
 asapi_table = function(client, farm, tableid, sensor,
                        index, date_start, date_end, email, api_key, url="https://api.agrospace.cl"){
   param_query = list(client = client, farm = farm,
@@ -231,6 +231,42 @@ asapi_table = function(client, farm, tableid, sensor,
     res = httr::content(res)
   }
 
+  return(res)
+}
+
+#### TABLE COVER ####
+#' The Table Cover GET Function
+#'
+#' This function allows you to GET Cover information with the API
+#' @param client Client name
+#' @param farm Farm name to query
+#' @param tableid The mean values for the field (levelzero) or for each paddock (levelone)
+#' @param sensor Sensor
+#' @param index Index
+#' @param date_start date from, YYYY-MM-DD format
+#' @param date_end date to, YYYY-MM-DD format
+#' @param email email of user
+#' @param api_key Api Key obtain from /auth
+#' @param url URL for dev purpose
+#' @keywords API_KEY, api_key
+#' @export
+#' @examples
+#' asapi_table_cover(client="clientexample", farm="farm1example", tableid="levelzero", sensor="S2SR", index="NDVI", date_start="2020-12-04", date_end="2020-12-19", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE", url="https://api.agrospace.cl")
+asapi_table_cover = function(client, farm, tableid, sensor,
+                             index, date_start, date_end, email, api_key, url="https://api.agrospace.cl"){
+  param_query = list(client=client, farm=farm,
+                     tableid=tableid, sensor=sensor, index=index,
+                     date_start=date_start, date_end=date_end,
+                     email=email, api_key=api_key)
+
+  res = httr::GET(url = asapi_url(url = url,endpoint = '/table_cover'),
+                  query = param_query)
+  if(res$status_code==200){
+    res = do.call(cbind.data.frame, asapi_json(res))
+  }else{
+    message("something wrong with the request")
+    res = httr::content(res)
+  }
   return(res)
 }
 
