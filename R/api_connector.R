@@ -128,7 +128,7 @@ asapi_client_get = function(client, email, api_key, url="http://api.agrospace.cl
 
   if(res$status_code==200){
     res = asapi_json(res)
-    res$counted_calls = do.call(rbind.data.frame, res$counted_calls)
+
   }else{
     res = httr::content(res)
   }
@@ -165,6 +165,36 @@ asapi_farm_get = function(client, farm, email, api_key, url="http://api.agrospac
 
   return(list(response=res,shp = sf::st_read(vector_farm)))
 }
+
+#' The Farms GET Function
+#'
+#' This function allows you to GET Farms information with the API and retrieve your API KEY
+#' @param client Client name
+#' @param farm Farm name to query
+#' @param email email of user
+#' @param api_key Api Key obtain from /auth
+#' @param url URL for dev purpose
+#' @keywords Farms
+#' @export
+#' @examples
+#' asapi_farm_put(client="clientexample", email="user.example@agrospace.cl", farm="farm1example", api_key="APIKEYEXAMPLE")
+asapi_farm_put = function(param_query,  url="https://api.agrospace.cl"){
+  # param_query = list(client = client, farm = farm,email = email,api_key = api_key)
+
+  res = httr::PUT(url = asapi_url(url = url,endpoint = '/farm'),
+                  query = param_query)
+
+  if(param_query$farm==""){
+    res = httr::content(res)
+  }else{
+    res = asapi_json(res)
+  }
+
+  vector_farm = res$location$vector[[1]]
+
+  return(list(response=res,shp = sf::st_read(vector_farm)))
+}
+
 
 #### TABLE ####
 #' The Table GET Function
