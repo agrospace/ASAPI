@@ -1,40 +1,53 @@
 
-# ASAPI
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- badges: start -->
 
-AgroSpace API R Packages
+[![tic](https://github.com/agrospace/ASAPI/workflows/tic/badge.svg?branch=master)](https://github.com/agrospace/ASAPI/actions)
+<!-- badges: end -->
 
-More than 20 satellite scientific index to be use in your application. 
+# ASAPI: **A**gro**S**pace **API** R Packages <img src="www/agro_space.png" align="right" width=155 height=120 alt="" />
 
-Full documentation in [api.agrospace.cl](api.agrospace.cl)
+-   More than 20 satellite scientific index to be use in your
+    application.
+-   Satellite Biophysics index
+-   Ready to use!
 
+**OpenAPI** Full documentation in
+[api.agrospace.cl](api.agrospace.cl/doc)
 
+## Installation
 
-
-```
-# install ASAPI
-
+``` r
 remotes::install_github('agrospace/ASAPI')
-
 ```
 
 ### Raster Layer
 
-Satellite information base on pixel size of your farm. 
+Satellite information base on pixel size of your farm.
 
-![](img/raster.png)
-
+![](www/raster.png)
 
 ### Vectorial Layer
-![](img/shape.png)
 
-The vectorial layer contains attributable geometries to by assigned as paddocks names or similar information. 
+![](www/shape.png)
 
-![](img/shape_paddocks.png)
+The vectorial layer contains attributable geometries to by assigned as
+paddocks names or similar information.
 
-### Stats by paddock
-![](img/NDVI_paddock.png)
+![](www/shape_paddocks.png)
+
+![](www/NDVI_paddock.png)
 
 ### Time series
-![](img/time-series.png)
 
+![](www/time-series.png)
 
+### GIF and Dashboards
+
+![](www/Index_GIF.gif)
+
+## Code of conduct
+
+Please note that this project is released with a [Contributor Code of
+Conduct](https://api.agrospace.cl). By participating in this project you
+agree to abide by its terms.

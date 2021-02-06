@@ -1,73 +1,97 @@
 ---
-title: "Quick Start"
-author: "Tomás Acuña"
-date: "1/16/2021"
+title: "ASAPI Quick Start"
+date: "2021-02-06"
 output: html_document
 ---
 
 ```{r setup}
 library(ASAPI)
 library(jsonlite)
+library(kableExtra)
+
 email = "user.example@agrospace.cl"
 password = "contra1234"
 auth = asapi_auth(email = email,password = password)
-
+client = auth$client
+api_key = auth$api_key
+user = auth$user
 
 ```
 
 ## AgroSpace API
 
-
 ```{r cars}
 print(auth)
 ```
 
-## Including Plots
+## Client Information
+
+```{r}
+asapi_client_get(client, email, api_key)
+
+```
+
+## User's Information
+
+```{r}
+user = asapi_user_get(client, email, user, api_key)
+counted_calls=user$counted_calls
+toJSON(user,pretty = TRUE)
+
+kbl(user$counted_calls) %>%
+  kable_styling(bootstrap_options = c("hover", "condensed")) %>% 
+  kable_material_dark()
+
+```
 
 
-```{r pressure, echo=FALSE}
-email = "user.example@agrospace.cl"
-password = "contra1234"
-auth = asapi_auth(email=email, password=password, url=url)
-
-client = auth$client
-api_key = auth$api_key
-user = auth$user
-
-
-# Get client information #
-#------------------------#
-asapi_client_get(client, email, api_key, url)
-
-
-# Get user information #
-#----------------------#
-asapi_user_get(client, email, user, api_key, url)
-
-
-# Get farm information #
-#----------------------#
+## Farm information
+```{r}
 farm = "farm1example"
-asapi_farm_get(client, farm, email, api_key, url)
+shp = asapi_farm_get(client, farm, email, api_key)
+toJSON(shp$response,pretty = TRUE)
+```
+## Vectorial data
+```{r}
+raster::plot(shp$shp)
+```
 
 
-# Get bigquery information #
-#--------------------------#
+## Retrieve tabulate time series information
+
+```{r}
 tableid = "levelzero"
 sensor = "S2SR"
 index = "NDVI"
-date_start="2020-11-29"
-date_end="2020-12-04"
+date_start="2021-01-01"
+date_end="2021-02-01"
 table = asapi_table(client, farm, tableid, sensor, index,
-                    date_start, date_end, email, api_key, url)
-table
+                    date_start, date_end, email, api_key)
 
+```
+```{r}
+kbl(table) %>%
+  kable_styling(bootstrap_options = c("hover", "condensed")) %>% 
+  kable_material_dark()
 
-#  Get Raster  #
-#--------------#
+```
+
+## Retrieve Satelite Data - NDVI
+```{r}
 date = table$date[1]
 rst = asapi_image(client, farm, sensor, index, date, email,
-                  api_key, url)
+                  api_key)
 raster::plot(rst)
 ```
 
+
+<!-- ## Retrieve Satelite Data - RGB -->
+<!-- ```{r} -->
+<!-- index = "RGB" -->
+<!-- table = asapi_table(client, farm, tableid, sensor, index, -->
+<!--                     date_start, date_end, email, api_key) -->
+<!-- date = table$date[1] -->
+<!-- rst = asapi_image(client, farm, sensor, index, date, email, -->
+<!--                   api_key) -->
+<!-- raster::plotRGB(rst) -->
+<!-- ``` -->
