@@ -9,8 +9,7 @@ Authors@R:
            email = "tomasacuna@ug.uchile.cl")
 URL: https://api.agrospace.cl
 Description: Retrieve spatial analysis of remote sensing and meteoological data
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+License: MIT
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
@@ -18,5 +17,4 @@ RoxygenNote: 7.1.1
 Imports:
     jsonlite,
     httr,
-    raster,
-    utils
+    raster
