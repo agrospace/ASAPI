@@ -290,11 +290,26 @@ asapi_table_cover = function(client, farm, tableid, sensor,
 #' asapi_image()
 asapi_image = function(client,farm,sensor,index,date,email,api_key, url="http://api.agrospace.cl"){
   param_query = list(client = client, farm = farm,sensor = sensor,
-                     index = index,date = date,
-                     email = email,api_key =  utils::URLencode(api_key,reserved=TRUE))
+                     index = index,date = date,email = email,api_key =  api_key)
 
-  param_curl = paste0(names(param_query),"=",param_query,collapse="&")
-  rst = raster::raster(paste0('/vsicurl/',url,'/image?',param_curl))
+  res = httr::GET(url = asapi_url(url = url,endpoint = '/image'),
+                  query = param_query)
+
+  res_file = httr::content(res)
+
+  if(index == "RGB"){
+
+    rst = raster::brick(paste0('/vsicurl/',res_file))
+    rst[rst>10000] <- NA
+    rst[rst<0] <- NA
+  }else{
+    rst = raster::raster(paste0('/vsicurl/',res_file))
+    rst[rst==9999] <- NA
+    rst[rst==-9999] <- NA
+    names(rst) = paste0(index, "_", date)
+    if(index == "BIOMASS"){rst[rst == 0] <- NA}
+  }
+
   return(rst)
 }
 
