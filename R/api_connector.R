@@ -303,6 +303,7 @@ asapi_image = function(client,farm,sensor,index,date,email,api_key, url="http://
     rst[rst<0] <- NA
     names(rst) = paste0(index,1:3, "_", date)
   }else{
+
     rst = raster::raster(paste0('/vsicurl/',res_file$link))
     rst[rst==9999] <- NA
     rst[rst==-9999] <- NA
