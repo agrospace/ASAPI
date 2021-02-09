@@ -295,22 +295,24 @@ asapi_image = function(client,farm,sensor,index,date,email,api_key, url="http://
   res = httr::GET(url = asapi_url(url = url,endpoint = '/image'),
                   query = param_query)
 
-  res_file = httr::content(res)
+  res_file = asapi_json(res)
 
   if(index == "RGB"){
-
-    rst = raster::brick(paste0('/vsicurl/',res_file))
+    rst = raster::brick(paste0('/vsicurl/',res_file$link))
     rst[rst>10000] <- NA
     rst[rst<0] <- NA
+    names(rst) = paste0(index,1:3, "_", date)
   }else{
-    rst = raster::raster(paste0('/vsicurl/',res_file))
+    rst = raster::raster(paste0('/vsicurl/',res_file$link))
     rst[rst==9999] <- NA
     rst[rst==-9999] <- NA
     names(rst) = paste0(index, "_", date)
     if(index == "BIOMASS"){rst[rst == 0] <- NA}
   }
 
-  return(rst)
+  res_file$rst = rst
+
+  return(res_file)
 }
 
 #### SENSOR ####
