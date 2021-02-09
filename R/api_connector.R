@@ -390,9 +390,10 @@ asapi_features_get = function(index, farm_type, api_key, url="http://api.agrospa
   param_query = list(index = index,
                      farm_type = farm_type,
                      api_key=api_key)
-  res = httr::GET(url = asapi_url(url = url,endpoint = '/feature'),
+  res = httr::GET(url = asapi_url(url = url,endpoint = '/features'),
                   query = param_query)
-  res = do.call(cbind.data.frame, fromJSON(toJSON(httr::content(res))))
+  res = asapi_json(res)
+
   return(res)
 }
 
