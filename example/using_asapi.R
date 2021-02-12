@@ -1,10 +1,7 @@
 library(ASAPI)
 library(jsonlite)
 
-#url = "http://localhost:9090"
-#url = "http://api.agrospace.cl"
-url = "http://apidev.agrospace.cl"
-
+url = "http://api.agrospace.cl"
 
 #     Login    #
 #--------------#
@@ -39,11 +36,17 @@ tableid = "levelzero"
 sensor = "S2SR"
 index = "NDVI"
 date_start="2020-11-29"
-date_end="2020-12-04"
+date_end="2021-02-10"
 table = asapi_table(client, farm, tableid, sensor, index,
                     date_start, date_end, email, api_key, url)
 table
 
+# ALL case
+sensor = "ALL"
+index = "ALL"
+table = asapi_table(client, farm, tableid, sensor, index,
+                    date_start, date_end, email, api_key, url)
+table
 
 #  Get Raster  #
 #--------------#

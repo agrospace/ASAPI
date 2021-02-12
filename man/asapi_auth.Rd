@@ -4,7 +4,7 @@
 \alias{asapi_auth}
 \title{The Authentication Function}
 \usage{
-asapi_auth(email = NULL, password = NULL, url = "https://api.agrospace.cl")
+asapi_auth(email = NULL, password = NULL, url = "http://api.agrospace.cl")
 }
 \arguments{
 \item{email}{Email of custome user}

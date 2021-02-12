@@ -81,7 +81,7 @@ kbl(table) %>%
 date = table$date[1]
 rst = asapi_image(client, farm, sensor, index, date, email,
                   api_key)
-raster::plot(rst)
+raster::plot(rst$rst)
 ```
 
 

@@ -14,7 +14,7 @@ asapi_table_cover(
   date_end,
   email,
   api_key,
-  url = "https://api.agrospace.cl"
+  url = "http://api.agrospace.cl"
 )
 }
 \arguments{

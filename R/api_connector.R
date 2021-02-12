@@ -3,29 +3,6 @@
 #====================================#
 
 #### API KEY ####
-#' The API Constructor Function
-#'
-#' Generical function to add api key token for each call
-#' @param api_key API key return by asapi_auth() function.
-#' @param param_query List of key parameters.
-#' @keywords constructor
-#' @export
-#' @examples
-#' asapi_construct()
-asapi_construct = function(param_query = NULL, api_key=NULL){
-
-  api_key = Sys.getenv("api_key")
-
-  if(is.null(api_key) || length(api_key)==0 ) {
-    "Please set api_key with  .Renviron file or Sys.setenv('api_key'='token')"
-  }
-
-  if(is.null(param_query) || length(param_query)==0 ) {"Please fill query_params"}
-
-  param_query = paste0(param_query,"?api_key=",api_key)
-  return(param_query)
-}
-
 
 #### JSON editor####
 #' JSON editor form
@@ -72,7 +49,13 @@ asapi_url = function(url="http://api.agrospace.cl",endpoint){
 asapi_auth = function(email=NULL, password=NULL, url="http://api.agrospace.cl"){
   res = httr::GET(url = asapi_url(url = url,endpoint = '/auth'),
                   query =  list(email = email,password = password))
-  res = jsonlite::fromJSON(jsonlite::toJSON(httr::content(res),auto_unbox = TRUE))
+  if(res$status_code==200){
+    res = jsonlite::fromJSON(jsonlite::toJSON(httr::content(res),auto_unbox = TRUE))
+  }else{
+    res = httr::content(res,as = "text", encoding = "UTF-8")
+    message(res)
+  }
+
   return(res)
 }
 
@@ -102,7 +85,8 @@ asapi_user_get = function(client, email, user, api_key, url="http://api.agrospac
     res = asapi_json(res)
     res$counted_calls = do.call(rbind.data.frame, res$counted_calls)
   }else{
-    res = httr::content(res)
+    res = httr::content(res,as = "text", encoding = "UTF-8")
+    message(res)
   }
 
   return(res)
@@ -130,7 +114,8 @@ asapi_client_get = function(client, email, api_key, url="http://api.agrospace.cl
     res = asapi_json(res)
 
   }else{
-    res = httr::content(res)
+    res = httr::content(res,as = "text", encoding = "UTF-8")
+    message(res)
   }
   return(res)
 }
@@ -155,6 +140,7 @@ asapi_farm_get = function(client, farm, email, api_key, url="http://api.agrospac
   res = httr::GET(url = asapi_url(url = url,endpoint = '/farm'),
                   query = param_query)
 
+  if(res$status_code==200){
   if(param_query$farm==""){
     res = httr::content(res)
   }else{
@@ -162,37 +148,12 @@ asapi_farm_get = function(client, farm, email, api_key, url="http://api.agrospac
   }
 
   vector_farm = res$location$vector[[1]]
-
-  return(list(response=res,shp = sf::st_read(vector_farm)))
-}
-
-#' The Farms GET Function
-#'
-#' This function allows you to GET Farms information with the API and retrieve your API KEY
-#' @param client Client name
-#' @param farm Farm name to query
-#' @param email email of user
-#' @param api_key Api Key obtain from /auth
-#' @param url URL for dev purpose
-#' @keywords Farms
-#' @export
-#' @examples
-#' asapi_farm_put(client="clientexample", email="user.example@agrospace.cl", farm="farm1example", api_key="APIKEYEXAMPLE")
-asapi_farm_put = function(param_query,  url="https://api.agrospace.cl"){
-  # param_query = list(client = client, farm = farm,email = email,api_key = api_key)
-
-  res = httr::PUT(url = asapi_url(url = url,endpoint = '/farm'),
-                  query = param_query)
-
-  if(param_query$farm==""){
-    res = httr::content(res)
+  return(list(response=res,shp = sf::st_read(vector_farm,quiet=TRUE)))
   }else{
-    res = asapi_json(res)
+    res = httr::content(res,as = "text", encoding = "UTF-8")
+    message(res)
   }
-
-  vector_farm = res$location$vector[[1]]
-
-  return(list(response=res,shp = sf::st_read(vector_farm)))
+  return(res)
 }
 
 
@@ -224,11 +185,12 @@ asapi_table = function(client, farm, tableid, sensor,
 
   res = httr::GET(url = asapi_url(url = url,endpoint = '/table'),
                   query = param_query)
+
   if(res$status_code==200){
     res = do.call(cbind.data.frame, asapi_json(res))
   }else{
-    message("something wrong with the request")
-    res = httr::content(res)
+    res = httr::content(res,as = "text", encoding = "UTF-8")
+    message(res)
   }
 
   return(res)
@@ -264,8 +226,9 @@ asapi_table_cover = function(client, farm, tableid, sensor,
   if(res$status_code==200){
     res = do.call(cbind.data.frame, asapi_json(res))
   }else{
-    message("something wrong with the request")
-    res = httr::content(res)
+
+    res = httr::content(res,as = "text", encoding = "UTF-8")
+    message(res)
   }
   return(res)
 }

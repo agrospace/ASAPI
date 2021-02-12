@@ -10,7 +10,7 @@ asapi_index_get(
   farm,
   sensor,
   api_key,
-  url = "https://api.agrospace.cl"
+  url = "http://api.agrospace.cl"
 )
 }
 \arguments{

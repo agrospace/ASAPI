@@ -4,7 +4,7 @@
 \alias{asapi_list}
 \title{The List GET Function}
 \usage{
-asapi_list(client, type, api_key, url = "https://api.agrospace.cl")
+asapi_list(client, type, api_key, url = "http://api.agrospace.cl")
 }
 \arguments{
 \item{client}{Client name}
