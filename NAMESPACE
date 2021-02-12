@@ -2,7 +2,6 @@
 
 export(asapi_auth)
 export(asapi_client_get)
-export(asapi_construct)
 export(asapi_farm_get)
 export(asapi_features_get)
 export(asapi_image)

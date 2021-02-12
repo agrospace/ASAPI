@@ -12,7 +12,7 @@ asapi_image(
   date,
   email,
   api_key,
-  url = "https://api.agrospace.cl"
+  url = "http://api.agrospace.cl"
 )
 }
 \arguments{
