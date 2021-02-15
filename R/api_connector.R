@@ -133,6 +133,37 @@ asapi_user_post = function(client, user_name, email_user, password, rol, email, 
   return(res)
 }
 
+#### USERS DELETE ####
+#' The Users DELETE Function
+#'
+#' This function allows you to DELETE User information with the API and retrieve your API KEY
+#' @param client Client name
+#' @param email_deleted User's email to delete
+#' @param email email of user admin
+#' @param api_key Api Key obtain from /auth
+#' @param url URL for dev purpose
+#' @keywords API_KEY, api_key
+#' @export
+#' @examples
+#' asapi_user_delete(client="clientexample", email_deleted="newuser.example@agrospace.cl", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
+asapi_user_delete = function(client, email_deleted, email, api_key, url="http://api.agrospace.cl"){
+  param_query = list(client = client,
+                     email_deleted = email_deleted,
+                     email = email,
+                     api_key=api_key)
+
+  res = httr::DELETE(url = asapi_url(url = url,endpoint = '/user'),
+                     query = param_query)
+  if(res$status_code==204){
+    res = paste0("Email user: ", email_deleted, " removed")
+  }else{
+    res = httr::content(res,as = "text", encoding = "UTF-8")
+    message(res)
+  }
+  return(res)
+}
+
+
 #### CLIENT ####
 #' The Client GET Function
 #'
