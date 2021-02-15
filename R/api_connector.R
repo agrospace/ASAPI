@@ -298,7 +298,7 @@ asapi_sensor_get = function(client, email, farm, api_key, url="http://api.agrosp
                      farm = farm,
                      api_key=api_key)
   #browser()
-  res = httr::GET(url = asapi_url(url = url,endpoint = '/info_sensor'),
+  res = httr::GET(url = asapi_url(url = url,endpoint = '/available_sensor'),
                   query = param_query)
 
   if(res$status_code==200){
@@ -329,7 +329,7 @@ asapi_index_get = function(client, email, farm, sensor, api_key, url="http://api
                      farm = farm,
                      sensor = sensor,
                      api_key=api_key)
-  res = httr::GET(url = asapi_url(url = url,endpoint = '/info_index'),
+  res = httr::GET(url = asapi_url(url = url,endpoint = '/available_index'),
                   query = param_query)
 
   res = httr::content(res)
