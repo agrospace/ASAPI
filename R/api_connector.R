@@ -92,6 +92,47 @@ asapi_user_get = function(client, email, user, api_key, url="http://api.agrospac
   return(res)
 }
 
+
+#### USERS POST ####
+#' The Users POST Function
+#'
+#' This function allows you to POST New User with the API and retrieve your API KEY
+#' @param client Client name
+#' @param user_name The new user name
+#' @param email_user Email of the new user
+#' @param password password of the new user
+#' @param rol rol of the new user (Optional)
+#' @param email email of user
+#' @param api_key Api Key obtain from /auth
+#' @param url URL for dev purpose
+#' @keywords API_KEY, api_key
+#' @export
+#' @examples
+#' asapi_user_post(client="clientexample", user_name="New User Example", email_user="newuser.example@agrospace.cl", password="Contra123", rol="user", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
+asapi_user_post = function(client, user_name, email_user, password, rol, email, api_key, url="http://api.agrospace.cl"){
+  param_query = list(client=client,
+                     user_name=user_name,
+                     email_user=email_user,
+                     password=password,
+                     rol=rol,
+                     email=email,
+                     api_key=api_key)
+
+  #browser()
+  res = httr::POST(url = asapi_url(url = url,endpoint = '/user'),
+                   query = param_query)
+
+  if(res$status_code==200){
+    res = asapi_json(res)
+    res$counted_calls = do.call(rbind.data.frame, res$counted_calls)
+  }else{
+    res = httr::content(res,as = "text", encoding = "UTF-8")
+    message(res)
+  }
+
+  return(res)
+}
+
 #### CLIENT ####
 #' The Client GET Function
 #'
