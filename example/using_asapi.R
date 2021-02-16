@@ -1,7 +1,7 @@
 library(ASAPI)
 library(jsonlite)
 
-url = "http://api.agrospace.cl"
+url = "https://api.agrospace.cl"
 
 #     Login    #
 #--------------#
