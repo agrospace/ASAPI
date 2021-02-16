@@ -254,14 +254,14 @@ asapi_farm_get = function(client, farm, email, api_key, url="http://api.agrospac
                   query = param_query)
 
   if(res$status_code==200){
-  if(param_query$farm==""){
-    res = httr::content(res)
-  }else{
-    res = asapi_json(res)
-  }
-
-  vector_farm = res$location$vector[[1]]
-  return(list(response=res,shp = sf::st_read(vector_farm,quiet=TRUE)))
+    if(param_query$farm=="ALL"){
+      res = httr::content(res)
+      return(list(response = res))
+    }else{
+      res = asapi_json(res)
+      vector_farm = res$location$vector[[1]]
+      return(list(response=res,shp = sf::st_read(vector_farm,quiet=TRUE)))
+    }
   }else{
     res = httr::content(res,as = "text", encoding = "UTF-8")
     message(res)
