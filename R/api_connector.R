@@ -92,6 +92,119 @@ asapi_user_get = function(client, email, user, api_key, url="http://api.agrospac
   return(res)
 }
 
+
+#' The Users POST Function
+#'
+#' This function allows you to POST New User with the API and retrieve your API KEY
+#' @param client Client name
+#' @param user_name The new user name
+#' @param email_user Email of the new user
+#' @param password password of the new user
+#' @param rol rol of the new user (Optional)
+#' @param email email of user
+#' @param api_key Api Key obtain from /auth
+#' @param url URL for dev purpose
+#' @keywords API_KEY, api_key
+#' @export
+#' @examples
+#' asapi_user_post(client="clientexample", user_name="New User Example", email_user="newuser.example@agrospace.cl", password="Contra123", rol="user", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
+# asapi_user_post = function(client, user_name, email_user, password, rol, email, api_key, url="http://api.agrospace.cl"){
+#   param_query = list(client=client,
+#                      user_name=user_name,
+#                      email_user=email_user,
+#                      password=password,
+#                      rol=rol,
+#                      email=email,
+#                      api_key=api_key)
+#
+#   #browser()
+#   res = httr::POST(url = asapi_url(url = url,endpoint = '/user'),
+#                    query = param_query)
+#
+#   if(res$status_code==200){
+#     res = asapi_json(res)
+#     res$counted_calls = do.call(rbind.data.frame, res$counted_calls)
+#   }else{
+#     res = httr::content(res,as = "text", encoding = "UTF-8")
+#     message(res)
+#   }
+#
+#   return(res)
+# }
+
+
+#' The Users PUT Function
+#'
+#' This function allows you to PUT User new information with the API and retrieve your API KEY
+#' @param client Client name
+#' @param user user name
+#' @param new_username new user name
+#' @param new_rol new user rol: admin or user
+#' @param new_email new email user
+#' @param old_email old email user
+#' @param email email of user
+#' @param api_key Api Key obtain from /auth
+#' @param url URL for dev purpose
+#' @keywords API_KEY, api_key
+#' @export
+#' @examples
+#' asapi_user_put(client="clientexample", user="newuserexample", new_username="edit user name", new_rol="user", new_email="edit.newuser.example@agrospace.cl", old_email="newuser.example@agrospace.cl", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
+# asapi_user_put = function(client, user, new_username, new_rol, new_email, old_email, email, api_key, url="http://api.agrospace.cl"){
+#   param_query = list(client = client,
+#                      user = user,
+#                      new_username = new_username,
+#                      new_name = "",
+#                      new_lastname = "",
+#                      new_rol = new_rol,
+#                      new_email = new_email,
+#                      old_email = old_email,
+#                      email = email,
+#                      api_key=api_key)
+#
+#   res = httr::PUT(url = asapi_url(url = url,endpoint = '/user'),
+#                   query = param_query)
+#
+#
+#   if(res$status_code==201){
+#     res = httr::content(res)
+#   }else{
+#     res = httr::content(res,as = "text", encoding = "UTF-8")
+#     message(res)
+#   }
+#   return(res)
+# }
+
+
+#' The Users DELETE Function
+#'
+#' This function allows you to DELETE User information with the API and retrieve your API KEY
+#' @param client Client name
+#' @param email_deleted User's email to delete
+#' @param email email of user admin
+#' @param api_key Api Key obtain from /auth
+#' @param url URL for dev purpose
+#' @keywords API_KEY, api_key
+#' @export
+#' @examples
+#' asapi_user_delete(client="clientexample", email_deleted="newuser.example@agrospace.cl", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
+asapi_user_delete = function(client, email_deleted, email, api_key, url="http://api.agrospace.cl"){
+  param_query = list(client = client,
+                     email_deleted = email_deleted,
+                     email = email,
+                     api_key=api_key)
+
+  res = httr::DELETE(url = asapi_url(url = url,endpoint = '/user'),
+                     query = param_query)
+  if(res$status_code==204){
+    res = paste0("Email user: ", email_deleted, " removed")
+  }else{
+    res = httr::content(res,as = "text", encoding = "UTF-8")
+    message(res)
+  }
+  return(res)
+}
+
+
 #### CLIENT ####
 #' The Client GET Function
 #'
@@ -141,14 +254,14 @@ asapi_farm_get = function(client, farm, email, api_key, url="http://api.agrospac
                   query = param_query)
 
   if(res$status_code==200){
-  if(param_query$farm==""){
-    res = httr::content(res)
-  }else{
-    res = asapi_json(res)
-  }
-
-  vector_farm = res$location$vector[[1]]
-  return(list(response=res,shp = sf::st_read(vector_farm,quiet=TRUE)))
+    if(param_query$farm=="ALL"){
+      res = httr::content(res)
+      return(list(response = res))
+    }else{
+      res = asapi_json(res)
+      vector_farm = res$location$vector[[1]]
+      return(list(response=res,shp = sf::st_read(vector_farm,quiet=TRUE)))
+    }
   }else{
     res = httr::content(res,as = "text", encoding = "UTF-8")
     message(res)
@@ -298,7 +411,7 @@ asapi_sensor_get = function(client, email, farm, api_key, url="http://api.agrosp
                      farm = farm,
                      api_key=api_key)
   #browser()
-  res = httr::GET(url = asapi_url(url = url,endpoint = '/info_sensor'),
+  res = httr::GET(url = asapi_url(url = url,endpoint = '/available_sensor'),
                   query = param_query)
 
   if(res$status_code==200){
@@ -329,7 +442,7 @@ asapi_index_get = function(client, email, farm, sensor, api_key, url="http://api
                      farm = farm,
                      sensor = sensor,
                      api_key=api_key)
-  res = httr::GET(url = asapi_url(url = url,endpoint = '/info_index'),
+  res = httr::GET(url = asapi_url(url = url,endpoint = '/available_index'),
                   query = param_query)
 
   res = httr::content(res)
