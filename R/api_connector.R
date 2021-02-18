@@ -60,6 +60,57 @@ asapi_auth = function(email=NULL, password=NULL, url="https://api.agrospace.cl")
   return(res)
 }
 
+#' The New ApiKey Function
+#'
+#' This function Reset your AgroSpace API Key, entering your session.
+#' @param email Email of custome user
+#' @param password Password of register user in https://api.agrospace.cl
+#' @param url URL for dev purpose
+#' @keywords API_KEY, api_key
+#' @export
+#' @examples
+#' asapi_new_apikey(email="user.example@agrospace.cl", password="contra1234")
+#'
+asapi_new_apikey = function(email=NULL, password=NULL, url="https://api.agrospace.cl"){
+  res = httr::POST(url = asapi_url(url = url,endpoint = '/new_apikey'),
+                  query =  list(email = email,password = password))
+
+  if(res$status_code==200){
+    res = jsonlite::fromJSON(jsonlite::toJSON(httr::content(res),auto_unbox = TRUE))
+  }else{
+    res = httr::content(res,as = "text", encoding = "UTF-8")
+    message(res)
+  }
+
+  return(res)
+}
+
+#' The New Password Function
+#'
+#' This function Reset your user Password, entering your session.
+#' @param email Email of custome user
+#' @param old_password Password of register user in https://api.agrospace.cl
+#' @param new_password New Password user
+#' @param url URL for dev purpose
+#' @keywords API_KEY, api_key
+#' @export
+#' @examples
+#' asapi_new_pass(email="user.example@agrospace.cl", old_password="contra1234", new_password="CONTRA111")
+#'
+asapi_new_pass = function(email=NULL, old_password=NULL, new_password=NULL, url="https://api.agrospace.cl"){
+  res = httr::POST(url = asapi_url(url = url,endpoint = '/new_password'),
+                   query =  list(email=email, old_password=old_password, new_password=new_password))
+
+  if(res$status_code==201){
+    res = jsonlite::fromJSON(jsonlite::toJSON(httr::content(res),auto_unbox = TRUE))
+  }else{
+    res = httr::content(res,as = "text", encoding = "UTF-8")
+    message(res)
+  }
+
+  return(res)
+}
+
 #### USERS ####
 #' The Users GET Function
 #'
