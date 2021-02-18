@@ -5,7 +5,7 @@ library(roxygen2)
 setwd("~/AgroSpace")
 create("ASAPI")
 ## Update documentation, inside -packages- name
-setwd("~/AgroSpace/ASAPI-dev")
+setwd("~/AgroSpace/ASAPI")
 document()
 
 ## Install the package, work from parent directory

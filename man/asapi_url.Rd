@@ -4,7 +4,7 @@
 \alias{asapi_url}
 \title{URL endpoint}
 \usage{
-asapi_url(url = "http://api.agrospace.cl", endpoint)
+asapi_url(url = "https://api.agrospace.cl", endpoint)
 }
 \arguments{
 \item{url}{URL for dev purpose}
