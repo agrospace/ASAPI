@@ -121,7 +121,7 @@ asapi_user_post = function(client, user_name, email_user, password, rol, email, 
   res = httr::POST(url = asapi_url(url = url,endpoint = '/user'),
                    query = param_query)
 
-  if(res$status_code==200){
+  if(res$status_code==201){
     res = asapi_json(res)
     res$counted_calls = do.call(rbind.data.frame, res$counted_calls)
   }else{
@@ -288,15 +288,8 @@ asapi_farm_post = function(client, farm_name, geojson="NULL", email, api_key, ur
   res = httr::POST(url = asapi_url(url = url,endpoint = '/farm'),
                   query = param_query)
 
-  if(res$status_code==200){
-    if(param_query$farm=="ALL"){
-      res = httr::content(res)
-      return(list(response = res))
-    }else{
-      res = asapi_json(res)
-      vector_farm = res$location$vector[[1]]
-      return(list(response=res,shp = sf::st_read(vector_farm,quiet=TRUE)))
-    }
+  if(res$status_code==201){
+    res = httr::content(res)
   }else{
     res = httr::content(res,as = "text", encoding = "UTF-8")
     message(res)
@@ -319,7 +312,7 @@ asapi_farm_post = function(client, farm_name, geojson="NULL", email, api_key, ur
 asapi_farm_delete = function(client, farm, email, api_key, url="https://api.agrospace.cl"){
   param_query = list(client=client, farm=farm, email=email, api_key=api_key)
 
-  browser()
+
   res = httr::DELETE(url = asapi_url(url = url,endpoint = '/farm'),
                    query = param_query)
 
