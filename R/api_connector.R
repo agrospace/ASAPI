@@ -34,6 +34,7 @@ asapi_url = function(url="https://api.agrospace.cl",endpoint){
   return(url)
 }
 
+
 #### AUTH ####
 #' The Authentication Function
 #'
@@ -108,29 +109,28 @@ asapi_user_get = function(client, email, user, api_key, url="https://api.agrospa
 #' @export
 #' @examples
 #' asapi_user_post(client="clientexample", user_name="New User Example", email_user="newuser.example@agrospace.cl", password="Contra123", rol="user", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
-# asapi_user_post = function(client, user_name, email_user, password, rol, email, api_key, url="http://api.agrospace.cl"){
-#   param_query = list(client=client,
-#                      user_name=user_name,
-#                      email_user=email_user,
-#                      password=password,
-#                      rol=rol,
-#                      email=email,
-#                      api_key=api_key)
-#
-#   #browser()
-#   res = httr::POST(url = asapi_url(url = url,endpoint = '/user'),
-#                    query = param_query)
-#
-#   if(res$status_code==200){
-#     res = asapi_json(res)
-#     res$counted_calls = do.call(rbind.data.frame, res$counted_calls)
-#   }else{
-#     res = httr::content(res,as = "text", encoding = "UTF-8")
-#     message(res)
-#   }
-#
-#   return(res)
-# }
+asapi_user_post = function(client, user_name, email_user, password, rol, email, api_key, url="https://api.agrospace.cl"){
+  param_query = list(client=client,
+                     user_name=user_name,
+                     email_user=email_user,
+                     password=password,
+                     rol=rol,
+                     email=email,
+                     api_key=api_key)
+
+  res = httr::POST(url = asapi_url(url = url,endpoint = '/user'),
+                   query = param_query)
+
+  if(res$status_code==200){
+    res = asapi_json(res)
+    res$counted_calls = do.call(rbind.data.frame, res$counted_calls)
+  }else{
+    res = httr::content(res,as = "text", encoding = "UTF-8")
+    message(res)
+  }
+
+  return(res)
+}
 
 
 #' The Users PUT Function
@@ -149,7 +149,7 @@ asapi_user_get = function(client, email, user, api_key, url="https://api.agrospa
 #' @export
 #' @examples
 #' asapi_user_put(client="clientexample", user="newuserexample", new_username="edit user name", new_rol="user", new_email="edit.newuser.example@agrospace.cl", old_email="newuser.example@agrospace.cl", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
-# asapi_user_put = function(client, user, new_username, new_rol, new_email, old_email, email, api_key, url="http://api.agrospace.cl"){
+# asapi_user_put = function(client, user, new_username, new_rol, new_email, old_email, email, api_key, url="https://api.agrospace.cl"){
 #   param_query = list(client = client,
 #                      user = user,
 #                      new_username = new_username,
@@ -161,6 +161,7 @@ asapi_user_get = function(client, email, user, api_key, url="https://api.agrospa
 #                      email = email,
 #                      api_key=api_key)
 #
+#   browser()
 #   res = httr::PUT(url = asapi_url(url = url,endpoint = '/user'),
 #                   query = param_query)
 #
@@ -269,8 +270,69 @@ asapi_farm_get = function(client, farm, email, api_key, url="https://api.agrospa
   return(res)
 }
 
+#' The Farms POST Function
+#'
+#' This function allows you to POST new Farm with the API and retrieve your API KEY
+#' @param client Client name
+#' @param farm Farm name to query
+#' @param email email of user
+#' @param api_key Api Key obtain from /auth
+#' @param url URL for dev purpose
+#' @keywords Farms
+#' @export
+#' @examples
+#' asapi_farm_post(client="clientexample", farm_name="farm.example", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
+asapi_farm_post = function(client, farm_name, geojson="NULL", email, api_key, url="https://api.agrospace.cl"){
+  param_query = list(client=client, farm_name=farm_name, geojson=geojson, email=email, api_key=api_key)
 
-#### TABLE ####
+  res = httr::POST(url = asapi_url(url = url,endpoint = '/farm'),
+                  query = param_query)
+
+  if(res$status_code==200){
+    if(param_query$farm=="ALL"){
+      res = httr::content(res)
+      return(list(response = res))
+    }else{
+      res = asapi_json(res)
+      vector_farm = res$location$vector[[1]]
+      return(list(response=res,shp = sf::st_read(vector_farm,quiet=TRUE)))
+    }
+  }else{
+    res = httr::content(res,as = "text", encoding = "UTF-8")
+    message(res)
+  }
+  return(res)
+}
+
+#' The Farms DELETE Function
+#'
+#' This function allows you to DELETE Farms information with the API and retrieve your API KEY
+#' @param client Client name
+#' @param farm Farm name to query
+#' @param email email of user
+#' @param api_key Api Key obtain from /auth
+#' @param url URL for dev purpose
+#' @keywords Farms
+#' @export
+#' @examples
+#' asapi_farm_delete(client="clientexample", farm="farmexample", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
+asapi_farm_delete = function(client, farm, email, api_key, url="https://api.agrospace.cl"){
+  param_query = list(client=client, farm=farm, email=email, api_key=api_key)
+
+  browser()
+  res = httr::DELETE(url = asapi_url(url = url,endpoint = '/farm'),
+                   query = param_query)
+
+  if(res$status_code==204){
+    res = paste0("Farm: ", farm, " removed")
+  }else{
+    res = httr::content(res,as = "text", encoding = "UTF-8")
+    message(res)
+  }
+  return(res)
+}
+
+#### TABLES ####
 #' The Table GET Function
 #'
 #' This function allows you to GET Client Farms  information with the API
@@ -309,7 +371,7 @@ asapi_table = function(client, farm, tableid, sensor, index,
   return(res)
 }
 
-#### TABLE COVER ####
+
 #' The Table Cover GET Function
 #'
 #' This function allows you to GET Cover information with the API
@@ -346,51 +408,6 @@ asapi_table_cover = function(client, farm, tableid, sensor, index,
   return(res)
 }
 
-
-#### RASTER ####
-
-#' The image GET Function
-#'
-#' This function allows you to GET Client - Farm raster information with the API
-#' @param client Client name
-#' @param farm Farm name to query
-#' @param sensor Sensor
-#' @param index Index
-#' @param date imagen date
-#' @param email email of user
-#' @param api_key Api Key obtain from /auth
-#' @param url URL for dev purpose
-#' @keywords API_KEY, api_key
-#' @export
-#' @examples
-#' asapi_image()
-asapi_image = function(client,farm,sensor,index,date,email,api_key, url="https://api.agrospace.cl"){
-  param_query = list(client = client, farm = farm,sensor = sensor,
-                     index = index,date = date,email = email,api_key =  api_key)
-
-  res = httr::GET(url = asapi_url(url = url,endpoint = '/image'),
-                  query = param_query)
-
-  res_file = asapi_json(res)
-
-  if(index == "RGB"){
-    rst = raster::brick(paste0('/vsicurl/',res_file$link))
-    rst[rst>10000] <- NA
-    rst[rst<0] <- NA
-    names(rst) = paste0(index,1:3, "_", date)
-  }else{
-
-    rst = raster::raster(paste0('/vsicurl/',res_file$link))
-    rst[rst==9999] <- NA
-    rst[rst==-9999] <- NA
-    names(rst) = paste0(index, "_", date)
-    if(index == "BIOMASS"){rst[rst == 0] <- NA}
-  }
-
-  res_file$rst = rst
-
-  return(res_file)
-}
 
 #### SENSOR ####
 #' The Sensor GET Function
@@ -447,6 +464,52 @@ asapi_index_get = function(client, email, farm, sensor, api_key, url="https://ap
 
   res = httr::content(res)
   return(res)
+}
+
+
+#### RASTER ####
+
+#' The image GET Function
+#'
+#' This function allows you to GET Client - Farm raster information with the API
+#' @param client Client name
+#' @param farm Farm name to query
+#' @param sensor Sensor
+#' @param index Index
+#' @param date imagen date
+#' @param email email of user
+#' @param api_key Api Key obtain from /auth
+#' @param url URL for dev purpose
+#' @keywords API_KEY, api_key
+#' @export
+#' @examples
+#' asapi_image()
+asapi_image = function(client,farm,sensor,index,date,email,api_key, url="https://api.agrospace.cl"){
+  param_query = list(client = client, farm = farm,sensor = sensor,
+                     index = index,date = date,email = email,api_key =  api_key)
+
+  res = httr::GET(url = asapi_url(url = url,endpoint = '/image'),
+                  query = param_query)
+
+  res_file = asapi_json(res)
+
+  if(index == "RGB"){
+    rst = raster::brick(paste0('/vsicurl/',res_file$link))
+    rst[rst>10000] <- NA
+    rst[rst<0] <- NA
+    names(rst) = paste0(index,1:3, "_", date)
+  }else{
+
+    rst = raster::raster(paste0('/vsicurl/',res_file$link))
+    rst[rst==9999] <- NA
+    rst[rst==-9999] <- NA
+    names(rst) = paste0(index, "_", date)
+    if(index == "BIOMASS"){rst[rst == 0] <- NA}
+  }
+
+  res_file$rst = rst
+
+  return(res_file)
 }
 
 #### FEATURES ####
