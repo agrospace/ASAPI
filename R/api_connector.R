@@ -174,7 +174,6 @@ asapi_user_post = function(client, user_name, email_user, password, rol, email, 
 
   if(res$status_code==201){
     res = asapi_json(res)
-    res$counted_calls = do.call(rbind.data.frame, res$counted_calls)
   }else{
     res = httr::content(res,as = "text", encoding = "UTF-8")
     message(res)
