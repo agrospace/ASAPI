@@ -10,4 +10,4 @@ document()
 
 ## Install the package, work from parent directory
 setwd("~/AgroSpace")
-install("ASAPI-dev")
+install("ASAPI")

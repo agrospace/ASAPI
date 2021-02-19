@@ -602,3 +602,49 @@ asapi_list = function(client, type, api_key, url="https://api.agrospace.cl"){
   res = httr::content(res)
   return(res)
 }
+
+
+#### LOGO & LAYOUT ####
+
+#' The Logo image GET Function
+#'
+#' This function returns the url of a client's logo with the API
+#' @param client Client name
+#' @param url URL for dev purpose
+#' @keywords API_KEY, api_key
+#' @export
+#' @examples
+#' asapi_logo(client="clientexample")
+asapi_logo = function(client, url="https://api.agrospace.cl"){
+  res = httr::GET(url = asapi_url(url = url,endpoint = '/logo'),
+                  query = list(client=client))
+  if(res$status_code=="200"){
+    res = asapi_json(res)
+  }else{
+    message(res)
+    res = asapi_json(res)
+  }
+  return(res)
+}
+
+#' The Layout image GET Function
+#'
+#' This function returns the url of a farm's layout with the API
+#' @param client Client name
+#' @param farm Client name
+#' @param url URL for dev purpose
+#' @keywords API_KEY, api_key
+#' @export
+#' @examples
+#' asapi_logo(client="clientexample")
+asapi_layout = function(client, farm, url="https://api.agrospace.cl"){
+  res = httr::GET(url = asapi_url(url = url,endpoint = '/layout'),
+                  query = list(client=client, farm=farm))
+  if(res$status_code=="200"){
+    res = asapi_json(res)
+  }else{
+    message(res)
+    res = asapi_json(res)
+  }
+  return(res)
+}
