@@ -626,6 +626,30 @@ asapi_logo = function(client, url="https://api.agrospace.cl"){
   return(res)
 }
 
+#' The Logo image POST Function
+#'
+#' This function upload a client's logo with the API
+#' @param client Client name.
+#' @param path Address of the new logo.
+#' @param email email of user
+#' @param api_key Api Key obtain from /auth
+#' @param url URL for dev purpose
+#' @keywords API_KEY, api_key
+#' @export
+#' @examples
+#' asapi_logo_post(client="clientexample", path="https://pbs.twimg.com/profile_images/1063094754228011008/-AN6PKnB.jpg", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
+asapi_logo_post = function(client, path, email, api_key, url="https://api.agrospace.cl"){
+  res = httr::POST(url = asapi_url(url = url,endpoint = '/logo'),
+                  query = list(client=client, path=path, email=email, api_key=api_key))
+  if(res$status_code=="201"){
+    res = asapi_json(res)
+  }else{
+    message(res)
+    res = asapi_json(res)
+  }
+  return(res)
+}
+
 #' The Layout image GET Function
 #'
 #' This function returns the url of a farm's layout with the API
@@ -640,6 +664,31 @@ asapi_layout = function(client, farm, url="https://api.agrospace.cl"){
   res = httr::GET(url = asapi_url(url = url,endpoint = '/layout'),
                   query = list(client=client, farm=farm))
   if(res$status_code=="200"){
+    res = asapi_json(res)
+  }else{
+    message(res)
+    res = asapi_json(res)
+  }
+  return(res)
+}
+
+#' The Layout image POST Function
+#'
+#' This function upload a farms's layout with the API
+#' @param client Client name.
+#' @param farm Farm name.
+#' @param path Address of the new logo.
+#' @param email email of user
+#' @param api_key Api Key obtain from /auth
+#' @param url URL for dev purpose
+#' @keywords API_KEY, api_key
+#' @export
+#' @examples
+#' asapi_layout_post(client="clientexample", farm="farm1example", path="https://pbs.twimg.com/profile_images/1063094754228011008/-AN6PKnB.jpg", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
+asapi_layout_post = function(client, path, email, api_key, url="https://api.agrospace.cl"){
+  res = httr::POST(url = asapi_url(url = url,endpoint = '/layout'),
+                   query = list(client=client, farm=farm, path=path, email=email, api_key=api_key))
+  if(res$status_code=="201"){
     res = asapi_json(res)
   }else{
     message(res)
