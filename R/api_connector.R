@@ -659,7 +659,7 @@ asapi_logo_post = function(client, path, email, api_key, url="https://api.agrosp
 #' @keywords API_KEY, api_key
 #' @export
 #' @examples
-#' asapi_logo(client="clientexample")
+#' asapi_layout(client="clientexample", farm="farm1example")
 asapi_layout = function(client, farm, url="https://api.agrospace.cl"){
   res = httr::GET(url = asapi_url(url = url,endpoint = '/layout'),
                   query = list(client=client, farm=farm))
@@ -684,8 +684,8 @@ asapi_layout = function(client, farm, url="https://api.agrospace.cl"){
 #' @keywords API_KEY, api_key
 #' @export
 #' @examples
-#' asapi_layout_post(client="clientexample", farm="farm1example", path="https://pbs.twimg.com/profile_images/1063094754228011008/-AN6PKnB.jpg", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
-asapi_layout_post = function(client, path, email, api_key, url="https://api.agrospace.cl"){
+#' asapi_layout_post(client="clientexample", farm="farm1example", path="", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
+asapi_layout_post = function(client, path, farm, email, api_key, url="https://api.agrospace.cl"){
   res = httr::POST(url = asapi_url(url = url,endpoint = '/layout'),
                    query = list(client=client, farm=farm, path=path, email=email, api_key=api_key))
   if(res$status_code=="201"){

@@ -7,6 +7,7 @@
 asapi_layout_post(
   client,
   path,
+  farm,
   email,
   api_key,
   url = "https://api.agrospace.cl"
@@ -17,19 +18,19 @@ asapi_layout_post(
 
 \item{path}{Address of the new logo.}
 
+\item{farm}{Farm name.}
+
 \item{email}{email of user}
 
 \item{api_key}{Api Key obtain from /auth}
 
 \item{url}{URL for dev purpose}
-
-\item{farm}{Farm name.}
 }
 \description{
 This function upload a farms's layout with the API
 }
 \examples{
-asapi_layout_post(client="clientexample", farm="farm1example", path="https://pbs.twimg.com/profile_images/1063094754228011008/-AN6PKnB.jpg", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
+asapi_layout_post(client="clientexample", farm="farm1example", path="", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
 }
 \keyword{API_KEY,}
 \keyword{api_key}
