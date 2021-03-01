@@ -2,7 +2,7 @@
 % Please edit documentation in R/api_connector.R
 \name{asapi_user_delete}
 \alias{asapi_user_delete}
-\title{The Users PUT Function}
+\title{The Users DELETE Function}
 \usage{
 asapi_user_delete(
   client,
@@ -22,25 +22,11 @@ asapi_user_delete(
 \item{api_key}{Api Key obtain from /auth}
 
 \item{url}{URL for dev purpose}
-
-\item{user}{user name}
-
-\item{new_username}{new user name}
-
-\item{new_rol}{new user rol: admin or user}
-
-\item{new_email}{new email user}
-
-\item{old_email}{old email user}
 }
 \description{
-This function allows you to PUT User new information with the API and retrieve your API KEY
+This function allows you to DELETE User information with the API and retrieve your API KEY
 }
 \examples{
-asapi_user_put(client="clientexample", user="newuserexample", new_username="edit user name", new_rol="user", new_email="edit.newuser.example@agrospace.cl", old_email="newuser.example@agrospace.cl", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
-The Users DELETE Function
-
-This function allows you to DELETE User information with the API and retrieve your API KEY
 asapi_user_delete(client="clientexample", email_deleted="newuser.example@agrospace.cl", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
 }
 \keyword{API_KEY,}
