@@ -187,12 +187,11 @@ asapi_user_post = function(client, user_name, email_user, password, rol, email, 
 #'
 #' This function allows you to PUT User new information with the API and retrieve your API KEY
 #' @param client Client name
-#' @param user user name
-#' @param new_username new user name
-#' @param new_rol new user rol: admin or user
-#' @param new_email new email user
-#' @param old_email old email user
-#' @param email email of user
+#' @param email What is the email of the user to edit.
+#' @param new_username New user name. If the value is 'NULL' it does not change.
+#' @param new_email New email user. If the value is 'NULL' it does not change.
+#' @param new_rol New user rol: admin or user. If the value is 'NULL' it does not change.
+#' @param email_admin  Email of the user who is editing. It must be 'admin'.
 #' @param api_key Api Key obtain from /auth
 #' @param url URL for dev purpose
 #' @keywords API_KEY, api_key
@@ -200,13 +199,9 @@ asapi_user_post = function(client, user_name, email_user, password, rol, email, 
 #' @examples
 #' asapi_user_put(client="clientexample", email="user.example@agrospace.cl", new_username="EDIT New User", email_admin="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
 asapi_user_put = function(client, email, new_username="NULL", new_email="NULL", new_rol="NULL", email_admin, api_key, url="https://api.agrospace.cl"){
-  param_query = list(client=client,
-                     email=email,
-                     new_username=new_username,
-                     new_email=new_email,
-                     new_rol=new_rol,
-                     email_admin=email_admin,
-                     api_key=api_key)
+  param_query = list(client=client, email=email, new_username=new_username,
+                     new_email=new_email, new_rol=new_rol,
+                     email_admin=email_admin, api_key=api_key)
 
   res = httr::PUT(url = asapi_url(url = url,endpoint = '/user'),
                   query = param_query)
@@ -332,6 +327,37 @@ asapi_farm_post = function(client, farm_name, geojson="NULL", email, api_key, ur
   param_query = list(client=client, farm_name=farm_name, geojson=geojson, email=email, api_key=api_key)
 
   res = httr::POST(url = asapi_url(url = url,endpoint = '/farm'),
+                  query = param_query)
+
+  if(res$status_code==201){
+    res = httr::content(res)
+  }else{
+    res = httr::content(res,as = "text", encoding = "UTF-8")
+    message(res)
+  }
+  return(res)
+}
+
+#' The Farms PUT Function
+#'
+#' This function allows you to PUT farm new information with the API and retrieve your API KEY
+#' @param client Client name
+#' @param farm Farm name to query
+#' @param new_type New farm type. If the value is 'NULL' it does not change.
+#' @param new_region New farm region. If the value is 'NULL' it does not change.
+#' @param new_commune New farm Commune. If the value is 'NULL' it does not change.
+#' @param new_geojson New farm geojson. If the value is 'NULL' it does not change.
+#' @param email_admin  Email of the user who is editing. It must be 'admin'.
+#' @param api_key Api Key obtain from /auth
+#' @param url URL for dev purpose
+#' @keywords Farms
+#' @export
+#' @examples
+#' asapi_farm_put(client="clientexample", farm="farm2example", new_region="Region de los Lagos", email_admin="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
+asapi_farm_put = function(client, farm, new_type="NULL", new_region="NULL", new_commune="NULL", new_geojson="NULL", email_admin, api_key, url="https://api.agrospace.cl"){
+  param_query = list(client=client, farm=farm, new_type=new_type, new_region=new_region,
+                     new_commune=new_commune, new_geojson=new_geojson, email_admin=email_admin, api_key=api_key)
+  res = httr::PUT(url = asapi_url(url = url,endpoint = '/farm'),
                   query = param_query)
 
   if(res$status_code==201){
