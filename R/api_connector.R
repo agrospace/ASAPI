@@ -392,7 +392,7 @@ asapi_farm_delete = function(client, farm, email, api_key, url="https://api.agro
 #' @keywords API_KEY, api_key
 #' @export
 #' @examples
-#' asapi_table(client="clientexample", farm="farm1example", tableid="levelzero", sensor="S2SR", index="NDVI", date_start="2020-11-29", date_end="2020-12-04", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE", url="https://api.agrospace.cl")
+#' asapi_table(client="clientexample", farm="farm1example", tableid="levelzero", sensor="S2SR", index="NDVI", date_start="2019-12-05", date_end="2021-02-07", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE", url="https://api.agrospace.cl")
 asapi_table = function(client, farm, tableid, sensor, index,
                        date_start, date_end, email, api_key, url="https://api.agrospace.cl"){
   param_query = list(client = client, farm = farm,
@@ -526,33 +526,36 @@ asapi_index_get = function(client, email, farm, sensor, api_key, url="https://ap
 #' @keywords API_KEY, api_key
 #' @export
 #' @examples
-#' asapi_image()
+#' asapi_image(client="clientexample", farm="farm1example", sensor="S2SR", index="NDVI", date="2021-02-07", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
 asapi_image = function(client,farm,sensor,index,date,email,api_key, url="https://api.agrospace.cl"){
   param_query = list(client = client, farm = farm,sensor = sensor,
                      index = index,date = date,email = email,api_key =  api_key)
 
   res = httr::GET(url = asapi_url(url = url,endpoint = '/image'),
                   query = param_query)
+  if(res$status_code==200){
+    res_file = asapi_json(res)
+    if(index == "RGB"){
+      rst = raster::brick(paste0('/vsicurl/',res_file$link))
+      rst[rst>10000] <- NA
+      rst[rst<0] <- NA
+      names(rst) = paste0(index,1:3, "_", date)
+    }else{
+      rst = raster::raster(paste0('/vsicurl/',res_file$link))
+      rst[rst==9999] <- NA
+      rst[rst==-9999] <- NA
+      names(rst) = paste0(index, "_", date)
+      if(index == "BIOMASS"){rst[rst == 0] <- NA}
+    }
 
-  res_file = asapi_json(res)
+    res_file$rst = rst
+    return(res_file)
 
-  if(index == "RGB"){
-    rst = raster::brick(paste0('/vsicurl/',res_file$link))
-    rst[rst>10000] <- NA
-    rst[rst<0] <- NA
-    names(rst) = paste0(index,1:3, "_", date)
   }else{
-
-    rst = raster::raster(paste0('/vsicurl/',res_file$link))
-    rst[rst==9999] <- NA
-    rst[rst==-9999] <- NA
-    names(rst) = paste0(index, "_", date)
-    if(index == "BIOMASS"){rst[rst == 0] <- NA}
+    res = httr::content(res,as = "text", encoding = "UTF-8")
+    message(res)
+    return(res)
   }
-
-  res_file$rst = rst
-
-  return(res_file)
 }
 
 #### FEATURES ####

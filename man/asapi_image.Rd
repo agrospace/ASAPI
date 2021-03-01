@@ -36,7 +36,7 @@ asapi_image(
 This function allows you to GET Client - Farm raster information with the API
 }
 \examples{
-asapi_image()
+asapi_image(client="clientexample", farm="farm1example", sensor="S2SR", index="NDVI", date="2021-02-07", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
 }
 \keyword{API_KEY,}
 \keyword{api_key}
