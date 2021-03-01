@@ -198,32 +198,28 @@ asapi_user_post = function(client, user_name, email_user, password, rol, email, 
 #' @keywords API_KEY, api_key
 #' @export
 #' @examples
-#' asapi_user_put(client="clientexample", user="newuserexample", new_username="edit user name", new_rol="user", new_email="edit.newuser.example@agrospace.cl", old_email="newuser.example@agrospace.cl", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
-# asapi_user_put = function(client, user, new_username, new_rol, new_email, old_email, email, api_key, url="https://api.agrospace.cl"){
-#   param_query = list(client = client,
-#                      user = user,
-#                      new_username = new_username,
-#                      new_name = "",
-#                      new_lastname = "",
-#                      new_rol = new_rol,
-#                      new_email = new_email,
-#                      old_email = old_email,
-#                      email = email,
-#                      api_key=api_key)
-#
-#   browser()
-#   res = httr::PUT(url = asapi_url(url = url,endpoint = '/user'),
-#                   query = param_query)
-#
-#
-#   if(res$status_code==201){
-#     res = httr::content(res)
-#   }else{
-#     res = httr::content(res,as = "text", encoding = "UTF-8")
-#     message(res)
-#   }
-#   return(res)
-# }
+#' asapi_user_put(client="clientexample", email="user.example@agrospace.cl", new_username="EDIT New User", email_admin="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
+asapi_user_put = function(client, email, new_username="NULL", new_email="NULL", new_rol="NULL", email_admin, api_key, url="https://api.agrospace.cl"){
+  param_query = list(client=client,
+                     email=email,
+                     new_username=new_username,
+                     new_email=new_email,
+                     new_rol=new_rol,
+                     email_admin=email_admin,
+                     api_key=api_key)
+
+  res = httr::PUT(url = asapi_url(url = url,endpoint = '/user'),
+                  query = param_query)
+
+
+  if(res$status_code==201){
+    res = httr::content(res)
+  }else{
+    res = httr::content(res,as = "text", encoding = "UTF-8")
+    message(res)
+  }
+  return(res)
+}
 
 
 #' The Users DELETE Function
