@@ -646,7 +646,10 @@ asapi_counted = function(client, email, api_key, url="https://api.agrospace.cl")
   res = httr::GET(url = asapi_url(url = url,endpoint = '/counted_calls'),
                   query = param_query)
   if(res$status_code==200){
-    res = httr::content(res)
+    res = asapi_json(res)
+    res$endpoint_calls = do.call(rbind.data.frame, res$endpoint_calls)
+    res$month_calls = as.data.frame(res$month_calls)
+    colnames(res$month_calls) = rownames(res$endpoint_calls)
   }else{
     res = httr::content(res, as = "text", encoding = "UTF-8")
     message(res)
