@@ -2,6 +2,7 @@
 
 export(asapi_auth)
 export(asapi_client_get)
+export(asapi_counted)
 export(asapi_farm_delete)
 export(asapi_farm_get)
 export(asapi_farm_post)
