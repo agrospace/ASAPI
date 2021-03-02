@@ -604,7 +604,7 @@ asapi_features_get = function(index, farm_type, api_key, url="https://api.agrosp
   return(res)
 }
 
-#### LIST USER/FARM ####
+#### OTHERS ENDPOINTS ####
 #' The List GET Function
 #'
 #' This function allows you to GET list of farms or users of a client.
@@ -624,6 +624,33 @@ asapi_list = function(client, type, api_key, url="https://api.agrospace.cl"){
   res = httr::GET(url = asapi_url(url = url,endpoint = '/list'),
                   query = param_query)
   res = httr::content(res)
+  return(res)
+}
+
+#' The Counted Calls GET Function
+#'
+#' This function get list of counted calls for a user.
+#' Agrospace members only, with apikey master.
+#' @param client Client name.
+#' @param email Email of user.
+#' @param api_key Api Key obtain from /auth.
+#' @param url URL for dev purpose.
+#' @keywords API_KEY, api_key
+#' @export
+#' @examples
+#' asapi_counted(client="clientexample", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
+asapi_counted = function(client, email, api_key, url="https://api.agrospace.cl"){
+  param_query = list(client = client,
+                     email = email,
+                     api_key = api_key)
+  res = httr::GET(url = asapi_url(url = url,endpoint = '/counted_calls'),
+                  query = param_query)
+  if(res$status_code==200){
+    res = httr::content(res)
+  }else{
+    res = httr::content(res, as = "text", encoding = "UTF-8")
+    message(res)
+  }
   return(res)
 }
 
