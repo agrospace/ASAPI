@@ -4,7 +4,13 @@
 \alias{asapi_sensor_get}
 \title{The Sensor GET Function}
 \usage{
-asapi_sensor_get(client, email, farm, api_key, url = "http://api.agrospace.cl")
+asapi_sensor_get(
+  client,
+  email,
+  farm,
+  api_key,
+  url = "https://api.agrospace.cl"
+)
 }
 \arguments{
 \item{client}{Client name}

@@ -4,7 +4,7 @@
 \alias{asapi_features_get}
 \title{The Features GET Function}
 \usage{
-asapi_features_get(index, farm_type, api_key, url = "http://api.agrospace.cl")
+asapi_features_get(index, farm_type, api_key, url = "https://api.agrospace.cl")
 }
 \arguments{
 \item{index}{index}
