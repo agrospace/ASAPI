@@ -76,7 +76,7 @@ read_shape = function(client,farm,email,api_key,reset=FALSE){
 #'
 read_rst = function(client,farm,sensor,index,date,email,api_key,reset=FALSE){
   tmp = tmp_creator(reset = reset)
-  id_rst = paste0(client,farm,index,date,collapse = "_")
+  id_rst = paste0(client,farm,sensor,index,date,collapse = "_")
   file = file.path(tmp, paste0(id_rst,".grd"))
   if(file.exists(file)){
     message("Reading image: ", id_rst)
