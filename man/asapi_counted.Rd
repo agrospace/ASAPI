@@ -20,7 +20,7 @@ This function get list of counted calls for a user.
 Agrospace members only, with apikey master.
 }
 \examples{
-asapi_counted(client="clientexample", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
+asapi_counted(client="clientexample", email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 }
 \keyword{API_KEY,}
 \keyword{api_key}

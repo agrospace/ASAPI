@@ -20,7 +20,9 @@ This function allows you to GET list of farms or users of a client.
 Agrospace members only, with apikey master.
 }
 \examples{
-asapi_list(client="clientexample", type="farm", api_key="APIKEYEXAMPLE")
+asapi_list(client="clientexample", type="farm",
+api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
+
 }
 \keyword{API_KEY,}
 \keyword{api_key}

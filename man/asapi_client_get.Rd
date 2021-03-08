@@ -19,6 +19,8 @@ asapi_client_get(client, email, api_key, url = "https://api.agrospace.cl")
 This function allows you to GET Client information with the API and retrieve your API KEY
 }
 \examples{
-asapi_client_get(client="clientexample", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
+asapi_client_get(client="clientexample", email="user.example@agrospace.cl",
+api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
+
 }
 \keyword{api_key}

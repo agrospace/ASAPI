@@ -1,7 +1,7 @@
 Package: ASAPI
 Type: Package
-Title: AgroSpace API Connector Packaes
-Version: 0.0.0.98
+Title: Agro Space API Connector Package
+Version: 0.0.0.991
 Authors@R: 
     person(given = "Tomás",
            family = "Acuña Ruz",
@@ -14,7 +14,15 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Suggests:
+    knitr,
+    qpdf
+VignetteBuilder:
+    knitr
 Imports:
     jsonlite,
+    kableExtra,
     httr,
-    raster
+    rgdal,
+    raster,
+    sf
