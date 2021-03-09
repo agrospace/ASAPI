@@ -27,6 +27,7 @@ asapi_farm_delete(
 This function allows you to DELETE Farms information with the API and retrieve your API KEY
 }
 \examples{
-asapi_farm_delete(client="clientexample", farm="farmexample", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
+asapi_farm_delete(client="clientexample", farm="farmexample",
+email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 }
 \keyword{Farms}

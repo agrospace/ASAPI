@@ -6,8 +6,10 @@ url = "https://api.agrospace.cl"
 #     Login    #
 #--------------#
 email = "user.example@agrospace.cl"
-password = "contra1234"
+password = "CONTRA111"
 auth = asapi_auth(email=email, password=password, url=url)
+
+
 
 client = auth$client
 api_key = auth$api_key

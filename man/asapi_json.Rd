@@ -8,13 +8,8 @@ asapi_json(res = NULL)
 }
 \arguments{
 \item{res}{Respone from api.agrospace.cl}
-
-\item{api_key}{API key return by asapi_auth() function.}
 }
 \description{
 Generical function to translate json to data.frame
-}
-\examples{
-asapi_json()
 }
 \keyword{response}

@@ -21,6 +21,8 @@ asapi_farm_get(client, farm, email, api_key, url = "https://api.agrospace.cl")
 This function allows you to GET Farms information with the API and retrieve your API KEY
 }
 \examples{
-asapi_farm_get(client="clientexample", email="user.example@agrospace.cl", farm="farm1example", api_key="APIKEYEXAMPLE")
+asapi_farm_get(client="clientexample", email="user.example@agrospace.cl",
+farm="farm1example", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
+
 }
 \keyword{Farms}

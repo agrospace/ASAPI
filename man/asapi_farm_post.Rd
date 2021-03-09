@@ -16,18 +16,22 @@ asapi_farm_post(
 \arguments{
 \item{client}{Client name}
 
+\item{farm_name}{Farm name to be set}
+
+\item{geojson}{geojson apram}
+
 \item{email}{email of user}
 
 \item{api_key}{Api Key obtain from /auth}
 
 \item{url}{URL for dev purpose}
-
-\item{farm}{Farm name to query}
 }
 \description{
 This function allows you to POST new Farm with the API and retrieve your API KEY
 }
 \examples{
-asapi_farm_post(client="clientexample", farm_name="farm.example", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
+asapi_farm_post(client="clientexample", farm_name="farm.example",
+email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
+
 }
 \keyword{Farms}

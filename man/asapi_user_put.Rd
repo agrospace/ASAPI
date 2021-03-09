@@ -36,7 +36,7 @@ asapi_user_put(
 This function allows you to PUT User new information with the API and retrieve your API KEY
 }
 \examples{
-asapi_user_put(client="clientexample", email="user.example@agrospace.cl", new_username="EDIT New User", email_admin="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
+asapi_user_put(client="clientexample", email="user.example@agrospace.cl", new_username="EDIT New User", email_admin="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 }
 \keyword{API_KEY,}
 \keyword{api_key}

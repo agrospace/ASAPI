@@ -30,7 +30,7 @@ asapi_layout_post(
 This function upload a farms's layout with the API
 }
 \examples{
-asapi_layout_post(client="clientexample", farm="farm1example", path="", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE")
+asapi_layout_post(client="clientexample", farm="farm1example", path="", email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 }
 \keyword{API_KEY,}
 \keyword{api_key}

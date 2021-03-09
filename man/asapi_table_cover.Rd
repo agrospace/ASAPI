@@ -42,7 +42,9 @@ asapi_table_cover(
 This function allows you to GET Cover information with the API
 }
 \examples{
-asapi_table_cover(client="clientexample", farm="farm1example", tableid="levelzero", sensor="S2SR", index="NDVI", date_start="2020-12-04", date_end="2020-12-19", email="user.example@agrospace.cl", api_key="APIKEYEXAMPLE", url="https://api.agrospace.cl")
+asapi_table_cover(client="clientexample", farm="farm1example",
+tableid="levelzero", sensor="S2SR", index="NDVI", date_start="2020-12-04", date_end="2020-12-19", email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key, url="https://api.agrospace.cl")
+
 }
 \keyword{API_KEY,}
 \keyword{api_key}
