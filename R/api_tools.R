@@ -97,5 +97,5 @@ read_rst = function(client,farm,sensor,index,date,email,api_key,reset=FALSE){
                               filename=file.path(tmp, paste0(id_rst,".grd")),
                               bandorder='BIL', overwrite=TRUE)
   }
-  return(rst)
+  return(list(rst=rst,file=id_rst))
 }
