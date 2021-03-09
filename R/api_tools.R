@@ -39,7 +39,7 @@ tmp_creator()
 #'
 read_shape = function(client,farm,email,api_key,reset=FALSE){
   tmp = tmp_creator(reset = reset)
-  id_farm = paste0(client,farm,collapse = "-")
+  id_farm = paste(client,farm,collapse = "_")
 
   file = file.path(tmp,paste0(id_farm,".Rdata"))
 
@@ -76,7 +76,7 @@ read_shape = function(client,farm,email,api_key,reset=FALSE){
 #'
 read_rst = function(client,farm,sensor,index,date,email,api_key,reset=FALSE){
   tmp = tmp_creator(reset = reset)
-  id_rst = paste0(client,farm,sensor,index,date,collapse = "_")
+  id_rst = paste(client,farm,sensor,index,date,sep="_")
   file = file.path(tmp, paste0(id_rst,".grd"))
   if(file.exists(file)){
     message("Reading image: ", id_rst)
@@ -87,7 +87,7 @@ read_rst = function(client,farm,sensor,index,date,email,api_key,reset=FALSE){
     }
 
   }else{
-    message("Downloading image: ", index,"-",date)
+    message("Downloading image: ",id_rst)
     rst = ASAPI::asapi_image(client = client, farm = farm,
                              sensor=sensor, index=index,
                              date=date, email=email,
