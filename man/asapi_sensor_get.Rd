@@ -9,6 +9,7 @@ asapi_sensor_get(
   email,
   farm,
   api_key,
+  dash_param = FALSE,
   url = "https://api.agrospace.cl"
 )
 }
@@ -20,6 +21,8 @@ asapi_sensor_get(
 \item{farm}{farm name}
 
 \item{api_key}{Api Key obtain from /auth}
+
+\item{dash_param}{AgroSpace internal use parameter. Default value FALSE}
 
 \item{url}{URL for dev purpose}
 }

@@ -117,15 +117,17 @@ asapi_new_pass = function(email=NULL, old_password=NULL, new_password=NULL, url=
 #' @param email email of user
 #' @param user user name
 #' @param api_key Api Key obtain from /auth
+#' @param dash_param AgroSpace internal use parameter. Default value FALSE
 #' @param url URL for dev purpose
 #' @keywords API_KEY, api_key
 #' @export
 #' @examples
 #' asapi_user_get(client="clientexample", email="user.example@agrospace.cl", user="userexample", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
-asapi_user_get = function(client, email, user, api_key, url="https://api.agrospace.cl"){
+asapi_user_get = function(client, email, user, api_key, dash_param=FALSE, url="https://api.agrospace.cl"){
   param_query = list(client = client,
                      email = email,
                      user = user,
+                     dash_param = dash_param,
                      api_key=api_key)
 
   res = httr::GET(url = asapi_url(url = url,endpoint = '/user'),
@@ -195,7 +197,7 @@ asapi_user_post = function(client, user_name, email_user, password, rol, email, 
 #' @keywords API_KEY, api_key
 #' @export
 #' @examples
-#' asapi_user_put(client="clientexample", email="user.example@agrospace.cl", new_username="EDIT New User", email_admin="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
+#' asapi_user_put(client="clientexample", email="newuser.example@agrospace.cl", new_username="EDIT New User", email_admin="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 asapi_user_put = function(client, email, new_username="NULL", new_email="NULL", new_rol="NULL", email_admin, api_key, url="https://api.agrospace.cl"){
   param_query = list(client=client, email=email, new_username=new_username,
                      new_email=new_email, new_rol=new_rol,
@@ -252,6 +254,7 @@ asapi_user_delete = function(client, email_deleted, email, api_key, url="https:/
 #' @param client Client name
 #' @param email email of user
 #' @param api_key Api Key obtain from /auth
+#' @param dash_param AgroSpace internal use parameter. Default value FALSE
 #' @param url URL for dev purpose
 #' @keywords api_key
 #' @export
@@ -259,8 +262,8 @@ asapi_user_delete = function(client, email_deleted, email, api_key, url="https:/
 #' asapi_client_get(client="clientexample", email="user.example@agrospace.cl",
 #' api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 #'
-asapi_client_get = function(client, email, api_key, url="https://api.agrospace.cl"){
-  param_query = list(client = client,email = email,api_key=api_key)
+asapi_client_get = function(client, email, api_key, dash_param=FALSE, url="https://api.agrospace.cl"){
+  param_query = list(client=client, email=email, api_key=api_key, dash_param=dash_param)
 
   res = httr::GET(url = asapi_url(url = url,endpoint = '/client'),
                   query = param_query)
@@ -284,6 +287,7 @@ asapi_client_get = function(client, email, api_key, url="https://api.agrospace.c
 #' @param farm Farm name to query
 #' @param email email of user
 #' @param api_key Api Key obtain from /auth
+#' @param dash_param AgroSpace internal use parameter. Default value FALSE
 #' @param url URL for dev purpose
 #' @keywords Farms
 #' @export
@@ -291,8 +295,8 @@ asapi_client_get = function(client, email, api_key, url="https://api.agrospace.c
 #' asapi_farm_get(client="clientexample", email="user.example@agrospace.cl",
 #' farm="farm1example", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 #'
-asapi_farm_get = function(client, farm, email, api_key, url="https://api.agrospace.cl"){
-  param_query = list(client = client, farm = farm,email = email,api_key = api_key)
+asapi_farm_get = function(client, farm, email, api_key, dash_param=FALSE, url="https://api.agrospace.cl"){
+  param_query = list(client=client, farm=farm, email=email, api_key=api_key, dash_param=dash_param)
 
   res = httr::GET(url = asapi_url(url = url,endpoint = '/farm'),
                   query = param_query)
@@ -325,10 +329,10 @@ asapi_farm_get = function(client, farm, email, api_key, url="https://api.agrospa
 #' @keywords Farms
 #' @export
 #' @examples
-#' asapi_farm_post(client="clientexample", farm_name="farm.example",
+#' asapi_farm_post(client="clientexample", farm_name="newfarmexample",
 #' email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 #'
-asapi_farm_post = function(client,  farm_name, geojson="NULL", email, api_key, url="https://api.agrospace.cl"){
+asapi_farm_post = function(client, farm_name, geojson="NULL", email, api_key, url="https://api.agrospace.cl"){
   param_query = list(client=client, farm_name=farm_name, geojson=geojson, email=email, api_key=api_key)
 
   res = httr::POST(url = asapi_url(url = url,endpoint = '/farm'),
@@ -358,7 +362,7 @@ asapi_farm_post = function(client,  farm_name, geojson="NULL", email, api_key, u
 #' @keywords Farms
 #' @export
 #' @examples
-#' asapi_farm_put(client="clientexample", farm="farm2example",
+#' asapi_farm_put(client="clientexample", farm="newfarmexample,
 #' new_region="Region de los Lagos", email_admin="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 #'
 asapi_farm_put = function(client, farm, new_type="NULL", new_region="NULL", new_commune="NULL", new_geojson="NULL", email_admin, api_key, url="https://api.agrospace.cl"){
@@ -387,7 +391,7 @@ asapi_farm_put = function(client, farm, new_type="NULL", new_region="NULL", new_
 #' @keywords Farms
 #' @export
 #' @examples
-#' asapi_farm_delete(client="clientexample", farm="farmexample",
+#' asapi_farm_delete(client="clientexample", farm="newfarmexample",
 #' email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 asapi_farm_delete = function(client, farm, email, api_key, url="https://api.agrospace.cl"){
   param_query = list(client=client, farm=farm, email=email, api_key=api_key)
@@ -418,6 +422,7 @@ asapi_farm_delete = function(client, farm, email, api_key, url="https://api.agro
 #' @param date_end date to, YYYY-MM-DD format
 #' @param email email of user
 #' @param api_key Api Key obtain from /auth
+#' @param dash_param AgroSpace internal use parameter. Default value FALSE
 #' @param url URL for dev purpose
 #' @keywords API_KEY, api_key
 #' @export
@@ -425,13 +430,11 @@ asapi_farm_delete = function(client, farm, email, api_key, url="https://api.agro
 #' asapi_table(client="clientexample", farm="farm1example",
 #' tableid="levelzero", sensor="S2SR", index="NDVI", date_start="2019-12-05", date_end="2021-02-07", email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key, url="https://api.agrospace.cl")
 #'
-asapi_table = function(client, farm, tableid, sensor, index,
-                       date_start, date_end, email, api_key, url="https://api.agrospace.cl"){
-  param_query = list(client = client, farm = farm,
-                     tableid = tableid,sensor = sensor,index = index,
-                     date_start = date_start, date_end = date_end,
-                     email = email,
-                     api_key =api_key)
+asapi_table = function(client, farm, tableid, sensor, index, date_start, date_end,
+                       email, api_key, dash_param=FALSE, url="https://api.agrospace.cl"){
+  param_query = list(client=client, farm=farm, tableid=tableid, sensor=sensor,
+                     index=index, date_start=date_start, date_end=date_end,
+                     email=email, api_key=api_key, dash_param=dash_param)
 
   res = httr::GET(url = asapi_url(url = url,endpoint = '/table'),
                   query = param_query)
@@ -459,6 +462,7 @@ asapi_table = function(client, farm, tableid, sensor, index,
 #' @param date_end date to, YYYY-MM-DD format
 #' @param email email of user
 #' @param api_key Api Key obtain from /auth
+#' @param dash_param AgroSpace internal use parameter. Default value FALSE
 #' @param url URL for dev purpose
 #' @keywords API_KEY, api_key
 #' @export
@@ -466,12 +470,12 @@ asapi_table = function(client, farm, tableid, sensor, index,
 #' asapi_table_cover(client="clientexample", farm="farm1example",
 #' tableid="levelzero", sensor="S2SR", index="NDVI", date_start="2020-12-04", date_end="2020-12-19", email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key, url="https://api.agrospace.cl")
 #'
-asapi_table_cover = function(client, farm, tableid, sensor, index,
-                             date_start, date_end, email, api_key, url="https://api.agrospace.cl"){
+asapi_table_cover = function(client, farm, tableid, sensor, index, date_start, date_end,
+                             email, api_key, dash_param=FALSE, url="https://api.agrospace.cl"){
   param_query = list(client=client, farm=farm,
                      tableid=tableid, sensor=sensor, index=index,
                      date_start=date_start, date_end=date_end,
-                     email=email, api_key=api_key)
+                     email=email, api_key=api_key, dash_param=dash_param)
 
   res = httr::GET(url = asapi_url(url = url,endpoint = '/table_cover'),
                   query = param_query)
@@ -494,6 +498,7 @@ asapi_table_cover = function(client, farm, tableid, sensor, index,
 #' @param farm farm name
 #' @param email email of user
 #' @param api_key Api Key obtain from /auth
+#' @param dash_param AgroSpace internal use parameter. Default value FALSE
 #' @param url URL for dev purpose
 #' @keywords API_KEY, api_key
 #' @export
@@ -501,11 +506,12 @@ asapi_table_cover = function(client, farm, tableid, sensor, index,
 #' asapi_sensor_get(client="clientexample", email="user.example@agrospace.cl",
 #' farm="farm1example", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 #'
-asapi_sensor_get = function(client, email, farm, api_key, url="https://api.agrospace.cl"){
+asapi_sensor_get = function(client, email, farm, api_key, dash_param=FALSE, url="https://api.agrospace.cl"){
   param_query = list(client = client,
                      email = email,
                      farm = farm,
-                     api_key=api_key)
+                     api_key=api_key,
+                     dash_param=dash_param)
 
   res = httr::GET(url = asapi_url(url = url,endpoint = '/available_sensor'),
                   query = param_query)
@@ -527,6 +533,7 @@ asapi_sensor_get = function(client, email, farm, api_key, url="https://api.agros
 #' @param email email of
 #' @param sensor sensor
 #' @param api_key Api Key obtain from /auth
+#' @param dash_param AgroSpace internal use parameter. Default value FALSE
 #' @param url URL for dev purpose
 #' @keywords API_KEY, api_key
 #' @export
@@ -534,12 +541,13 @@ asapi_sensor_get = function(client, email, farm, api_key, url="https://api.agros
 #' asapi_index_get(client="clientexample", email="user.example@agrospace.cl",
 #' farm="farm1example", sensor="S2SR", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 #'
-asapi_index_get = function(client, email, farm, sensor, api_key, url="https://api.agrospace.cl"){
+asapi_index_get = function(client, email, farm, sensor, api_key, dash_param=FALSE, url="https://api.agrospace.cl"){
   param_query = list(client = client,
                      email = email,
                      farm = farm,
                      sensor = sensor,
-                     api_key=api_key)
+                     api_key=api_key,
+                     dash_param=dash_param)
   res = httr::GET(url = asapi_url(url = url,endpoint = '/available_index'),
                   query = param_query)
 
@@ -548,7 +556,7 @@ asapi_index_get = function(client, email, farm, sensor, api_key, url="https://ap
 }
 
 
-#### RASTER ####
+#### RASTER - IMAGE ####
 
 #' The image GET Function
 #'
@@ -560,6 +568,7 @@ asapi_index_get = function(client, email, farm, sensor, api_key, url="https://ap
 #' @param date imagen date
 #' @param email email of user
 #' @param api_key Api Key obtain from /auth
+#' @param dash_param AgroSpace internal use parameter. Default value FALSE
 #' @param url URL for dev purpose
 #' @keywords API_KEY, api_key
 #' @export
@@ -567,9 +576,9 @@ asapi_index_get = function(client, email, farm, sensor, api_key, url="https://ap
 #' asapi_image(client="clientexample", farm="farm1example",
 #' sensor="S2SR", index="NDVI", date="2021-02-07", email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 #'
-asapi_image = function(client,farm,sensor,index,date,email,api_key, url="https://api.agrospace.cl"){
-  param_query = list(client = client, farm = farm,sensor = sensor,
-                     index = index,date = date,email = email,api_key =  api_key)
+asapi_image = function(client, farm, sensor, index, date, email, api_key, dash_param=FALSE, url="https://api.agrospace.cl"){
+  param_query = list(client=client, farm=farm, sensor=sensor, index=index,
+                     date=date, email=email, api_key=api_key, dash_param=dash_param)
 
   res = httr::GET(url = asapi_url(url = url,endpoint = '/image'),
                   query = param_query)
