@@ -135,7 +135,6 @@ asapi_user_get = function(client, email, user, api_key, dash_param=FALSE, url="h
 
   if(res$status_code==200){
     res = asapi_json(res)
-    res$counted_calls = do.call(rbind.data.frame, res$counted_calls)
   }else{
     res = httr::content(res,as = "text", encoding = "UTF-8")
     message(res)
