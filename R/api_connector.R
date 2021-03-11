@@ -782,3 +782,24 @@ asapi_layout_post = function(client, path, farm, email, api_key, url="https://ap
   }
   return(res)
 }
+
+#### PLANES ####
+#' The plan GET Function
+#'
+#' This function returns information on plans, with the API.
+#' @param plan Name of the plan. You can use 'ALL' to call all available plans.
+#' @param api_key AgroSpace API Key.
+#' @param url URL for dev purpose
+#' @keywords API_KEY, api_key
+#' @export
+asapi_planes_get = function(plan, api_key, url="https://api.agrospace.cl"){
+  res = httr::GET(url = asapi_url(url = url,endpoint = '/planes'),
+                  query = list(plan=plan, api_key=api_key))
+  if(res$status_code=="200"){
+    res = asapi_json(res)
+  }else{
+    message(res)
+    res = asapi_json(res)
+  }
+  return(res)
+}
