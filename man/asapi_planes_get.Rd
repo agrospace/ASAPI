@@ -4,14 +4,14 @@
 \alias{asapi_planes_get}
 \title{The plan GET Function}
 \usage{
-asapi_planes_get(plan, api_key, url = "https://api.agrospace.cl")
+asapi_planes_get(plan, url = "https://api.agrospace.cl")
 }
 \arguments{
 \item{plan}{Name of the plan. You can use 'ALL' to call all available plans.}
 
-\item{api_key}{AgroSpace API Key.}
-
 \item{url}{URL for dev purpose}
+
+\item{api_key}{AgroSpace API Key.}
 }
 \description{
 This function returns information on plans, with the API.

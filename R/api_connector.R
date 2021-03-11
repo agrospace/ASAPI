@@ -792,7 +792,7 @@ asapi_layout_post = function(client, path, farm, email, api_key, url="https://ap
 #' @param url URL for dev purpose
 #' @keywords API_KEY, api_key
 #' @export
-asapi_planes_get = function(plan, api_key, url="https://api.agrospace.cl"){
+asapi_planes_get = function(plan, url="https://api.agrospace.cl"){
   res = httr::GET(url = asapi_url(url = url,endpoint = '/planes'),
                   query = list(plan=plan, api_key=api_key))
   if(res$status_code=="200"){
