@@ -4,7 +4,14 @@
 \alias{asapi_user_get}
 \title{The Users GET Function}
 \usage{
-asapi_user_get(client, email, user, api_key, url = "https://api.agrospace.cl")
+asapi_user_get(
+  client,
+  email,
+  user,
+  api_key,
+  dash_param = FALSE,
+  url = "https://api.agrospace.cl"
+)
 }
 \arguments{
 \item{client}{Client name}
@@ -14,6 +21,8 @@ asapi_user_get(client, email, user, api_key, url = "https://api.agrospace.cl")
 \item{user}{user name}
 
 \item{api_key}{Api Key obtain from /auth}
+
+\item{dash_param}{AgroSpace internal use parameter. Default value FALSE}
 
 \item{url}{URL for dev purpose}
 }

@@ -30,7 +30,7 @@ asapi_farm_post(
 This function allows you to POST new Farm with the API and retrieve your API KEY
 }
 \examples{
-asapi_farm_post(client="clientexample", farm_name="farm.example",
+asapi_farm_post(client="clientexample", farm_name="newfarmexample",
 email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 
 }
