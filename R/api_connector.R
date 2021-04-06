@@ -793,7 +793,7 @@ asapi_layout_post = function(client, path, farm, email, api_key, url="https://ap
 #' @export
 asapi_planes_get = function(plan, url="https://api.agrospace.cl"){
   res = httr::GET(url = asapi_url(url = url,endpoint = '/planes'),
-                  query = list(plan=plan, api_key=api_key))
+                  query = list(plan=plan))
   if(res$status_code=="200"){
     res = asapi_json(res)
   }else{
