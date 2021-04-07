@@ -92,6 +92,7 @@ read_rst = function(client,farm,sensor,index,date,email,api_key,reset=FALSE){
                              sensor=sensor, index=index,
                              date=date, email=email,
                              api_key=api_key)
+    message("Print image desp: ",rst)
 
     rst = raster::writeRaster(rst$rst,
                               filename=file.path(tmp, paste0(id_rst,".grd")),
@@ -99,3 +100,65 @@ read_rst = function(client,farm,sensor,index,date,email,api_key,reset=FALSE){
   }
   return(list(rst=rst,file=id_rst))
 }
+
+
+
+#### IMAGE ####
+#' Plot RGB
+#'
+#' This function allows you to check if the raster was downlaod before in order to avoid repeated downloading of data
+#' @param client Client name
+#' @param farm email of user
+#' @param date URL for dev purpose
+#' @param email Email of custome user
+#' @param api_key Api Key obtain from /auth
+#' @keywords plot rgb raster and keep in local
+#' @export
+#' @examples
+#' post_rgb_plot(client='clientexample', farm='farm1example', date = '2021-02-07', email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
+#'
+post_rgb_plot = function(client, farm, date,email, height = 200,width = 200,api_key, url = "https://api.agrospace.cl"){
+  param_query = list(client = client, farm = farm, date = date,height=height, width=width,email = email, api_key = api_key)
+  res = httr::POST(url = asapi_url(url = url, endpoint = "/plot"),
+                   query = param_query)
+
+  res = httr::content(res, as = "text", encoding = "UTF-8")
+  base::message(res)
+
+  return(list(res))
+}
+
+#### IMAGE ####
+#' Plot RGB
+#'
+#' This function allows you to check if the raster was downlaod before in order to avoid repeated downloading of data
+#' @param client Client name
+#' @param farm email of user
+#' @param date URL for dev purpose
+#' @param email Email of custome user
+#' @param api_key Api Key obtain from /auth
+#' @keywords plot rgb raster and keep in local
+#' @export
+#' @examples
+#' post_rgb_plot(client='clientexample', farm='farm1example', date = '2021-02-07', email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
+#'
+get_rgb_plot = function(client, farm, date,email,api_key, url = "https://api.agrospace.cl"){
+  param_query = list(client = client, farm = farm, date = date,email = email, api_key = api_key)
+  res = httr::GET(url = asapi_url(url = url, endpoint = "/plot"),
+                  query = param_query)
+
+
+  if (res$status_code == 200) {
+    res = httr::content(res, encoding = "UTF-8")
+    filename = paste0("tmp/",paste(client,farm,date,"RGB",sep = "_"),".png")
+    download.file(res$link[[1]]  ,filename, mode = 'wb')
+  } else {
+    res = httr::content(res, encoding = "UTF-8")
+    filename=NULL
+    base::message(res)
+  }
+
+  return(list(res,filename=filename))
+}
+
+
