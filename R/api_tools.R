@@ -140,7 +140,7 @@ post_rgb_plot = function(client, farm, date,email, height = 200,width = 200,api_
 #' @keywords plot rgb raster and keep in local
 #' @export
 #' @examples
-#' post_rgb_plot(client='clientexample', farm='farm1example', date = '2021-02-07', email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
+#' get_rgb_plot(client='clientexample', farm='farm1example', date = '2021-02-07', email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 #'
 get_rgb_plot = function(client, farm, date,email,api_key, url = "https://api.agrospace.cl"){
   param_query = list(client = client, farm = farm, date = date,email = email, api_key = api_key)
