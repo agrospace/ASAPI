@@ -277,6 +277,37 @@ asapi_client_get = function(client, email, api_key, dash_param=FALSE, url="https
   return(res)
 }
 
+#' The Client POST Function
+#'
+#' This function allows you to POST New Client with the API and retrieve your API KEY
+#' @param client_name  Name of de new client.
+#' @param email Email of the contact of the new client.
+#' @param contact Contact name.
+#' @param api_key AgroSpace API Key.
+#' @param url URL for dev purpose
+#' @keywords API_KEY, api_key
+#' @export
+#' @examples
+#' asapi_client_post(client_name="New Client Name", email="newclient@gmail.com", contact="Contact Name", api_key="...")
+asapi_client_post = function(client_name, email, contact, api_key, url="https://api.agrospace.cl"){
+  param_query = list(client_name=client_name,
+                     email=email,
+                     contact=contact,
+                     api_key=api_key)
+
+  res = httr::POST(url = asapi_url(url = url,endpoint = '/client'),
+                   query = param_query)
+
+  if(res$status_code==201){
+    res = httr::content(res,as = "text", encoding = "UTF-8")
+  }else{
+    res = httr::content(res,as = "text", encoding = "UTF-8")
+    message(res)
+  }
+
+  return(res)
+}
+
 
 #### FARMS ####
 #' The Farms GET Function
@@ -554,6 +585,42 @@ asapi_index_get = function(client, email, farm, sensor, api_key, dash_param=FALS
   return(res)
 }
 
+#' The time series image GET Function
+#'
+#' This function allows you to GET the time series of raster images.
+#' @param client Client name.
+#' @param farm Farm name to query.
+#' @param tableid The mean values for the field (levelzero) or for each paddock (levelone)
+#' @param sensor Sensor.
+#' @param index Index.
+#' @param date_start date from, YYYY-MM-DD format.
+#' @param date_end date to, YYYY-MM-DD format.
+#' @param path Address where the raster images will be saved. Default "getwd()".
+#' @param email email of user.
+#' @param api_key Api Key obtain from /auth.
+#' @param dash_param AgroSpace internal use parameter. Default value FALSE.
+#' @param url URL for dev purpose
+#' @keywords API_KEY, api_key
+#' @export
+#'
+asapi_st_image = function(client, farm, tableid, sensor, index, date_start, date_end, path=getwd(),
+                          email, api_key, dash_param=FALSE, url="https://api.agrospace.cl"){
+  Tabla = asapi_table(client = client, farm = farm, tableid = tableid, sensor = sensor,
+                      index = index, date_start = date_start, date_end = date_end,
+                      email = email, api_key = api_key)
+
+  if(!is.character(Tabla)){
+    dates = unique(Tabla$date)
+    for(date in dates){
+      raster = asapi_image(client=client, farm=farm, sensor=sensor, index=index,
+                           date=date, email=email, api_key=api_key)
+      raster::writeRaster(raster$rst, filename=paste0(path,"/", sensor,"_",index, "_", date,".tif"), format="GTiff", overwrite=F)
+    }
+    return("Download successful!")
+  }else{
+    return(Tabla)
+  }
+}
 
 #### RASTER - IMAGE ####
 
