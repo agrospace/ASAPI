@@ -1,7 +1,7 @@
 Package: ASAPI
 Type: Package
 Title: Agro Space API Connector Package
-Version: 0.0.0.997
+Version: 0.0.0.9978
 Authors@R: 
     person(given = "Tomás",
            family = "Acuña Ruz",
