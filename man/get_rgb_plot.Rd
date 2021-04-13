@@ -11,7 +11,8 @@ get_rgb_plot(
   email,
   api_key,
   url = "https://api.agrospace.cl",
-  path = getwd()
+  path = getwd(),
+  name = NULL
 )
 }
 \arguments{
@@ -24,6 +25,10 @@ get_rgb_plot(
 \item{email}{Email of custome user}
 
 \item{api_key}{Api Key obtain from /auth}
+
+\item{path}{Address where the image will be saved. Default "getwd()"}
+
+\item{name}{Name that the image will take. Default "client_farm_dare_RGB"}
 }
 \description{
 This function allows you to check if the raster was downlaod before in order to avoid repeated downloading of data
