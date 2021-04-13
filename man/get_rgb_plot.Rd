@@ -10,7 +10,8 @@ get_rgb_plot(
   date,
   email,
   api_key,
-  url = "https://api.agrospace.cl"
+  url = "https://api.agrospace.cl",
+  path = getwd()
 )
 }
 \arguments{
