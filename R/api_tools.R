@@ -154,7 +154,7 @@ get_rgb_plot = function(client, farm, date,email,api_key, url = "https://api.agr
   if (res$status_code == 200) {
     res = httr::content(res, encoding = "UTF-8")
     if(is.null(name)){filename = paste0(path, paste(client,farm,date,"RGB",sep = "_"),".png")}
-    else{filename = paste0(name,".png")}
+    else{filename = paste0(path, name,".png")}
     download.file(res$link[[1]]  ,filename, mode = 'wb')
   } else {
     res = httr::content(res, encoding = "UTF-8")
