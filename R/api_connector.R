@@ -701,6 +701,28 @@ asapi_features_get = function(index, farm_type, api_key, url="https://api.agrosp
   return(res)
 }
 
+#' The Features POST Function
+#'
+#' This function Update feature info from googledrive to mongoDB.
+#' Agrospace members only, with apikey master.
+#' @param api_key Api Key obtain from /auth
+#' @param url URL for dev purpose
+#' @keywords API_KEY, api_key
+#' @export
+#'
+asapi_features_post = function(api_key, url="https://api.agrospace.cl"){
+  res = httr::POST(url = asapi_url(url = url,endpoint = '/features'),
+                  query = list(api_key=api_key))
+  if(res$status_code=="201"){
+    res = asapi_json(res)
+  }else{
+    message(res)
+    res = asapi_json(res)
+  }
+  return(res)
+}
+
+
 #### OTHERS ENDPOINTS ####
 #' The List GET Function
 #'
