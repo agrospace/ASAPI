@@ -675,6 +675,47 @@ asapi_st_image = function(client, farm, tableid, sensor, index, date_start, date
 }
 
 
+
+#### TERRAMODELS ####
+#' The Terramodels POST Function
+#'
+#' This function set new task for downloading image indexes. This may take a some minutes.
+#' @param client Client name
+#' @param farm Farm name to query
+#' @param sensor Sensor
+#' @param index Index
+#' @param date_start date from, YYYY-MM-DD format
+#' @param date_end date to, YYYY-MM-DD format
+#' @param type_export Type of export like UPGCLOUD or TOGCLOUD.
+#' @param email email of user
+#' @param api_key Api Key obtain from /auth
+#' @param dash_param AgroSpace internal use parameter. Default value FALSE
+#' @param url URL for dev purpose
+#' @keywords API_KEY, api_key
+#' @export
+#' @examples
+#' asapi_terramodels_post(client="clientexample", farm="farm1example",
+#' sensor="S2SR", index="NDVI", date_start="2019-12-05", date_end="2021-02-07", type_export="UPGCLOUD", email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key, url="https://api.agrospace.cl")
+#'
+asapi_terramodels_post = function(client, farm, sensor, index, date_start, date_end, type_export,
+                       email, api_key, dash_param=FALSE, url="https://api.agrospace.cl"){
+  param_query = list(client=client, farm=farm, sensor=sensor, index=index,
+                     date_start=date_start, date_end=date_end, type_export=type_export,
+                     email=email, api_key=api_key, dash_param=dash_param)
+
+  res = httr::POST(url = asapi_url(url = url,endpoint = '/terramodels'),
+                  query = param_query)
+
+  if(res$status_code==200){
+    res = do.call(cbind.data.frame, asapi_json(res))
+    res = res$msg
+  }else{
+    res = httr::content(res,as = "text", encoding = "UTF-8")
+    message(res)
+  }
+  return(res)
+}
+
 #### FEATURES ####
 #' The Features GET Function
 #'
