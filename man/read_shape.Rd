@@ -4,7 +4,7 @@
 \alias{read_shape}
 \title{Read the Shape data from API}
 \usage{
-read_shape(client, farm, email, api_key, reset = FALSE)
+read_shape(client, farm, email, api_key, dash_param = FALSE, reset = FALSE)
 }
 \arguments{
 \item{client}{Client name}
@@ -14,6 +14,8 @@ read_shape(client, farm, email, api_key, reset = FALSE)
 \item{email}{Email of custome user}
 
 \item{api_key}{Api Key obtain from /auth}
+
+\item{dash_param}{AgroSpace internal use parameter. Default value FALSE.}
 
 \item{reset}{reset temporal folder}
 }
