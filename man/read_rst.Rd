@@ -4,7 +4,17 @@
 \alias{read_rst}
 \title{Read the Raster data from API}
 \usage{
-read_rst(client, farm, sensor, index, date, email, api_key, reset = FALSE)
+read_rst(
+  client,
+  farm,
+  sensor,
+  index,
+  date,
+  email,
+  api_key,
+  dash_param = FALSE,
+  reset = FALSE
+)
 }
 \arguments{
 \item{client}{Client name}
@@ -20,6 +30,8 @@ read_rst(client, farm, sensor, index, date, email, api_key, reset = FALSE)
 \item{email}{Email of custome user}
 
 \item{api_key}{Api Key obtain from /auth}
+
+\item{dash_param}{AgroSpace internal use parameter. Default value FALSE.}
 
 \item{reset}{reset temporal folder}
 }
