@@ -737,7 +737,13 @@ asapi_features_get = function(index, farm_type, api_key, url="https://api.agrosp
                      api_key=api_key)
   res = httr::GET(url = asapi_url(url = url,endpoint = '/features'),
                   query = param_query)
-  res = asapi_json(res)
+
+  if(res$status_code==200){
+    res = asapi_json(res)
+  }else{
+    res = httr::content(res,as = "text", encoding = "UTF-8")
+    message(res)
+  }
 
   return(res)
 }
