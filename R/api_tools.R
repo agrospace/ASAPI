@@ -92,7 +92,7 @@ read_rst = function(client,farm,sensor,index,date,email,api_key,reset=FALSE){
                              sensor=sensor, index=index,
                              date=date, email=email,
                              api_key=api_key)
-    message("Print image desp: ",rst)
+    # message("Print image desp: ",rst)
 
     rst = raster::writeRaster(rst$rst,
                               filename=file.path(tmp, paste0(id_rst,".grd")),
