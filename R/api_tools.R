@@ -31,13 +31,14 @@ tmp_creator()
 #' @param farm email of user
 #' @param email Email of custome user
 #' @param api_key Api Key obtain from /auth
+#' @param dash_param AgroSpace internal use parameter. Default value FALSE.
 #' @param reset reset temporal folder
 #' @keywords vectorial data as sf object
 #' @export
 #' @examples
 #' read_shape(client='clientexample', farm='farm1example',email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_ke)
 #'
-read_shape = function(client,farm,email,api_key,reset=FALSE){
+read_shape = function(client,farm,email,api_key,dash_param=FALSE,reset=FALSE){
   tmp = tmp_creator(reset = reset)
   id_farm = paste(client,farm,collapse = "_")
 
@@ -51,7 +52,7 @@ read_shape = function(client,farm,email,api_key,reset=FALSE){
     message("Downloading shape: ", client,"-",farm)
 
     farm_req = ASAPI::asapi_farm_get(client = client, farm = farm,
-                                     email=email, api_key=api_key)
+                                     email=email, api_key=api_key, dash_param=dash_param)
     save(farm_req,file=file)
   }
   return(farm_req)
@@ -68,13 +69,14 @@ read_shape = function(client,farm,email,api_key,reset=FALSE){
 #' @param date URL for dev purpose
 #' @param email Email of custome user
 #' @param api_key Api Key obtain from /auth
+#' @param dash_param AgroSpace internal use parameter. Default value FALSE.
 #' @param reset reset temporal folder
 #' @keywords read raster and keep in local
 #' @export
 #' @examples
 #' read_rst(client='clientexample', farm='farm1example', sensor = "S2SR", index = "NDVI", date = '2021-02-07', email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 #'
-read_rst = function(client,farm,sensor,index,date,email,api_key,reset=FALSE){
+read_rst = function(client,farm,sensor,index,date,email,api_key,dash_param=FALSE,reset=FALSE){
   tmp = tmp_creator(reset = reset)
   id_rst = paste(client,farm,sensor,index,date,sep="_")
   file = file.path(tmp, paste0(id_rst,".grd"))
@@ -91,8 +93,7 @@ read_rst = function(client,farm,sensor,index,date,email,api_key,reset=FALSE){
     rst = ASAPI::asapi_image(client = client, farm = farm,
                              sensor=sensor, index=index,
                              date=date, email=email,
-                             api_key=api_key)
-    # message("Print image desp: ",rst)
+                             api_key=api_key, dash_param=dash_param)
 
     rst = raster::writeRaster(rst$rst,
                               filename=file.path(tmp, paste0(id_rst,".grd")),
