@@ -43,7 +43,7 @@ asapi_url = function(url="https://api.agrospace.cl",endpoint){
 #' @keywords API_KEY, api_key
 #' @export
 #' @examples
-#' asapi_auth(email="userexample@agrospace.cl", password="contra1234")
+#' asapi_auth(email="user.example@agrospace.cl", password="contra1234")
 #'
 asapi_auth = function(email=NULL, password=NULL, url="https://api.agrospace.cl"){
   res = httr::GET(url = asapi_url(url = url,endpoint = '/auth'),
