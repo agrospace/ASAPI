@@ -844,7 +844,7 @@ asapi_logo = function(client, url="https://api.agrospace.cl"){
     res = asapi_json(res)
   }else{
     message(res)
-    res = asapi_json(res)
+    res = suppressMessages((asapi_json(res)))
   }
   return(res)
 }
