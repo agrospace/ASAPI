@@ -1,12 +1,13 @@
 library(ASAPI)
 library(jsonlite)
+library(dplyr)
 
 url = "https://api.agrospace.cl"
 
 #     Login    #
 #--------------#
 email = "user.example@agrospace.cl"
-password = "CONTRA111"
+password = "contra1234"
 auth = asapi_auth(email=email, password=password, url=url)
 
 
@@ -52,7 +53,10 @@ table
 
 #  Get Raster  #
 #--------------#
-date = table$date[1]
+(table_S2SR = table %>% filter(sensor == "S2SR") %>% slice(1))
+date = table_S2SR$date
+sensor = "S2SR"
+index = table_S2SR$index
 rst = asapi_image(client, farm, sensor, index, date, email,
                   api_key, url)
-raster::plot(rst)
+raster::plot(rst$rst)

@@ -123,7 +123,7 @@ asapi_new_pass = function(email=NULL, old_password=NULL, new_password=NULL, url=
 #' @export
 #' @examples
 #' asapi_user_get(client="clientexample", email="user.example@agrospace.cl", user="userexample", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
-asapi_user_get = function(client, email, user, api_key, dash_param=FALSE, url="https://api.agrospace.cl"){
+asapi_user_get = function(client, email, user, api_key, url="https://api.agrospace.cl", dash_param=FALSE){
   param_query = list(client = client,
                      email = email,
                      user = user,
@@ -261,7 +261,7 @@ asapi_user_delete = function(client, email_deleted, email, api_key, url="https:/
 #' asapi_client_get(client="clientexample", email="user.example@agrospace.cl",
 #' api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 #'
-asapi_client_get = function(client, email, api_key, dash_param=FALSE, url="https://api.agrospace.cl"){
+asapi_client_get = function(client, email, api_key, url="https://api.agrospace.cl", dash_param=FALSE){
   param_query = list(client=client, email=email, api_key=api_key, dash_param=dash_param)
 
   res = httr::GET(url = asapi_url(url = url,endpoint = '/client'),
@@ -325,7 +325,7 @@ asapi_client_post = function(client_name, email, contact, api_key, url="https://
 #' asapi_farm_get(client="clientexample", email="user.example@agrospace.cl",
 #' farm="farm1example", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 #'
-asapi_farm_get = function(client, farm, email, api_key, dash_param=FALSE, url="https://api.agrospace.cl"){
+asapi_farm_get = function(client, farm, email, api_key, url="https://api.agrospace.cl", dash_param=FALSE){
   param_query = list(client=client, farm=farm, email=email, api_key=api_key, dash_param=dash_param)
 
   res = httr::GET(url = asapi_url(url = url,endpoint = '/farm'),
@@ -461,7 +461,7 @@ asapi_farm_delete = function(client, farm, email, api_key, url="https://api.agro
 #' tableid="levelzero", sensor="S2SR", index="NDVI", date_start="2019-12-05", date_end="2021-02-07", email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key, url="https://api.agrospace.cl")
 #'
 asapi_table = function(client, farm, tableid, sensor, index, date_start, date_end,
-                       email, api_key, dash_param=FALSE, url="https://api.agrospace.cl"){
+                       email, api_key, url="https://api.agrospace.cl", dash_param=FALSE){
   param_query = list(client=client, farm=farm, tableid=tableid, sensor=sensor,
                      index=index, date_start=date_start, date_end=date_end,
                      email=email, api_key=api_key, dash_param=dash_param)
@@ -501,7 +501,7 @@ asapi_table = function(client, farm, tableid, sensor, index, date_start, date_en
 #' tableid="levelzero", sensor="S2SR", index="NDVI", date_start="2020-12-04", date_end="2020-12-19", email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key, url="https://api.agrospace.cl")
 #'
 asapi_table_cover = function(client, farm, tableid, sensor, index, date_start, date_end,
-                             email, api_key, dash_param=FALSE, url="https://api.agrospace.cl"){
+                             email, api_key, url="https://api.agrospace.cl", dash_param=FALSE){
   param_query = list(client=client, farm=farm,
                      tableid=tableid, sensor=sensor, index=index,
                      date_start=date_start, date_end=date_end,
@@ -536,7 +536,7 @@ asapi_table_cover = function(client, farm, tableid, sensor, index, date_start, d
 #' asapi_sensor_get(client="clientexample", email="user.example@agrospace.cl",
 #' farm="farm1example", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 #'
-asapi_sensor_get = function(client, email, farm, api_key, dash_param=FALSE, url="https://api.agrospace.cl"){
+asapi_sensor_get = function(client, email, farm, api_key, url="https://api.agrospace.cl", dash_param=FALSE){
   param_query = list(client = client,
                      email = email,
                      farm = farm,
@@ -571,7 +571,7 @@ asapi_sensor_get = function(client, email, farm, api_key, dash_param=FALSE, url=
 #' asapi_index_get(client="clientexample", email="user.example@agrospace.cl",
 #' farm="farm1example", sensor="S2SR", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 #'
-asapi_index_get = function(client, email, farm, sensor, api_key, dash_param=FALSE, url="https://api.agrospace.cl"){
+asapi_index_get = function(client, email, farm, sensor, api_key, url="https://api.agrospace.cl", dash_param=FALSE){
   param_query = list(client = client,
                      email = email,
                      farm = farm,
@@ -606,7 +606,7 @@ asapi_index_get = function(client, email, farm, sensor, api_key, dash_param=FALS
 #' asapi_image(client="clientexample", farm="farm1example",
 #' sensor="S2SR", index="NDVI", date="2021-02-07", email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 #'
-asapi_image = function(client, farm, sensor, index, date, email, api_key, dash_param=FALSE, url="https://api.agrospace.cl"){
+asapi_image = function(client, farm, sensor, index, date, email, api_key, url="https://api.agrospace.cl", dash_param=FALSE){
   param_query = list(client=client, farm=farm, sensor=sensor, index=index,
                      date=date, email=email, api_key=api_key, dash_param=dash_param)
 
@@ -656,7 +656,7 @@ asapi_image = function(client, farm, sensor, index, date, email, api_key, dash_p
 #' @export
 #'
 asapi_st_image = function(client, farm, tableid, sensor, index, date_start, date_end, path=getwd(),
-                          email, api_key, dash_param=FALSE, url="https://api.agrospace.cl"){
+                          email, api_key, url="https://api.agrospace.cl", dash_param=FALSE){
   Tabla = asapi_table(client = client, farm = farm, tableid = tableid, sensor = sensor,
                       index = index, date_start = date_start, date_end = date_end,
                       email = email, api_key = api_key)
@@ -698,7 +698,7 @@ asapi_st_image = function(client, farm, tableid, sensor, index, date_start, date
 #' sensor="S2SR", index="NDVI", date_start="2019-12-05", date_end="2021-02-07", type_export="UPGCLOUD", email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key, url="https://api.agrospace.cl")
 #'
 asapi_terramodels_post = function(client, farm, sensor, index, date_start, date_end, type_export,
-                       email, api_key, dash_param=FALSE, url="https://api.agrospace.cl"){
+                       email, api_key, url="https://api.agrospace.cl", dash_param=FALSE){
   param_query = list(client=client, farm=farm, sensor=sensor, index=index,
                      date_start=date_start, date_end=date_end, type_export=type_export,
                      email=email, api_key=api_key, dash_param=dash_param)
