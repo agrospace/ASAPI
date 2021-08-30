@@ -14,8 +14,8 @@ asapi_table_cover(
   date_end,
   email,
   api_key,
-  dash_param = FALSE,
-  url = "https://api.agrospace.cl"
+  url = "https://api.agrospace.cl",
+  dash_param = FALSE
 )
 }
 \arguments{
@@ -37,9 +37,9 @@ asapi_table_cover(
 
 \item{api_key}{Api Key obtain from /auth}
 
-\item{dash_param}{AgroSpace internal use parameter. Default value FALSE}
-
 \item{url}{URL for dev purpose}
+
+\item{dash_param}{AgroSpace internal use parameter. Default value FALSE}
 }
 \description{
 This function allows you to GET Cover information with the API

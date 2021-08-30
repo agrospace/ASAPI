@@ -148,7 +148,7 @@ post_rgb_plot = function(client, farm, date,email, height = 200,width = 200,api_
 #' @examples
 #' get_rgb_plot(client='clientexample', farm='farm1example', date = '2021-02-07', email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 #'
-get_rgb_plot = function(client, farm, date,email,api_key, url = "https://api.agrospace.cl",
+get_rgb_plot = function(client, farm, date,email,api_key, api_key,url = "https://api.agrospace.cl",
                         path=getwd(), name=NULL){
   param_query = list(client = client, farm = farm, date = date,email = email, api_key = api_key)
   res = httr::GET(url = asapi_url(url = url, endpoint = "/plot"),

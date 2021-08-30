@@ -10,8 +10,8 @@ asapi_index_get(
   farm,
   sensor,
   api_key,
-  dash_param = FALSE,
-  url = "https://api.agrospace.cl"
+  url = "https://api.agrospace.cl",
+  dash_param = FALSE
 )
 }
 \arguments{
@@ -25,9 +25,9 @@ asapi_index_get(
 
 \item{api_key}{Api Key obtain from /auth}
 
-\item{dash_param}{AgroSpace internal use parameter. Default value FALSE}
-
 \item{url}{URL for dev purpose}
+
+\item{dash_param}{AgroSpace internal use parameter. Default value FALSE}
 }
 \description{
 This function allows you to GET Index information of client

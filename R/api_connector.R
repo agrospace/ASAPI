@@ -925,7 +925,6 @@ asapi_layout_post = function(client, path, farm, email, api_key, url="https://ap
 #'
 #' This function returns information on plans, with the API.
 #' @param plan Name of the plan. You can use 'ALL' to call all available plans.
-#' @param api_key AgroSpace API Key.
 #' @param url URL for dev purpose
 #' @keywords API_KEY, api_key
 #' @export

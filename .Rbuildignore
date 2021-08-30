@@ -4,3 +4,4 @@
 ^docs$
 ^pkgdown$
 ^\.httr-oauth$
+^LICENSE\.md$

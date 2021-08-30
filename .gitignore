@@ -41,3 +41,5 @@ vignettes/*.pdf
 example/using_asapi_dev.R
 .Rproj.user
 
+.Rdata
+.DS_Store
