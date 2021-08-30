@@ -115,7 +115,10 @@ read_rst = function(client,farm,sensor,index,date,email,api_key,dash_param=FALSE
 #' @param farm email of user
 #' @param date URL for dev purpose
 #' @param email Email of custome user
+#' @param height Heigth
+#' @param width Width of image
 #' @param api_key Api Key obtain from /auth
+#' @param url URL for dev purpose
 #' @keywords plot rgb raster and keep in local
 #' @export
 #' @examples
@@ -141,6 +144,7 @@ post_rgb_plot = function(client, farm, date,email, height = 200,width = 200,api_
 #' @param date URL for dev purpose
 #' @param email Email of custome user
 #' @param api_key Api Key obtain from /auth
+#' @param url URL for dev purpose
 #' @param path Address where the image will be saved. Default "getwd()"
 #' @param name Name that the image will take. Default "client_farm_dare_RGB"
 #' @keywords plot rgb raster and keep in local
@@ -148,7 +152,7 @@ post_rgb_plot = function(client, farm, date,email, height = 200,width = 200,api_
 #' @examples
 #' get_rgb_plot(client='clientexample', farm='farm1example', date = '2021-02-07', email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 #'
-get_rgb_plot = function(client, farm, date,email,api_key, api_key,url = "https://api.agrospace.cl",
+get_rgb_plot = function(client, farm, date,email, api_key,url = "https://api.agrospace.cl",
                         path=getwd(), name=NULL){
   param_query = list(client = client, farm = farm, date = date,email = email, api_key = api_key)
   res = httr::GET(url = asapi_url(url = url, endpoint = "/plot"),
