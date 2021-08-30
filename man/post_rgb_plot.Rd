@@ -24,7 +24,13 @@ post_rgb_plot(
 
 \item{email}{Email of custome user}
 
+\item{height}{Heigth}
+
+\item{width}{Width of image}
+
 \item{api_key}{Api Key obtain from /auth}
+
+\item{url}{URL for dev purpose}
 }
 \description{
 This function allows you to check if the raster was downlaod before in order to avoid repeated downloading of data

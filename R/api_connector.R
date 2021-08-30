@@ -392,7 +392,7 @@ asapi_farm_post = function(client, farm_name, geojson="NULL", email, api_key, ur
 #' @keywords Farms
 #' @export
 #' @examples
-#' asapi_farm_put(client="clientexample", farm="newfarmexample,
+#' asapi_farm_put(client="clientexample", farm="newfarmexample",
 #' new_region="Region de los Lagos", email_admin="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
 #'
 asapi_farm_put = function(client, farm, new_type="NULL", new_region="NULL", new_commune="NULL", new_geojson="NULL", email_admin, api_key, url="https://api.agrospace.cl"){

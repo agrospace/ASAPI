@@ -43,3 +43,4 @@ example/using_asapi_dev.R
 
 .Rdata
 .DS_Store
+tmp/

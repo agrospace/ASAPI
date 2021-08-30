@@ -10,8 +10,6 @@ asapi_planes_get(plan, url = "https://api.agrospace.cl")
 \item{plan}{Name of the plan. You can use 'ALL' to call all available plans.}
 
 \item{url}{URL for dev purpose}
-
-\item{api_key}{AgroSpace API Key.}
 }
 \description{
 This function returns information on plans, with the API.

@@ -26,6 +26,8 @@ get_rgb_plot(
 
 \item{api_key}{Api Key obtain from /auth}
 
+\item{url}{URL for dev purpose}
+
 \item{path}{Address where the image will be saved. Default "getwd()"}
 
 \item{name}{Name that the image will take. Default "client_farm_dare_RGB"}

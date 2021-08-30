@@ -4,8 +4,6 @@
 #' This function create a temporal folder in local directory
 #' @param reset Reset all the tmp directory
 #' @export
-#' @examples
-#' tmp_creator()
 #'
 tmp_creator = function(reset=FALSE){
   tmpdir = "tmp"
@@ -148,6 +146,7 @@ post_rgb_plot = function(client, farm, date,email, height = 200,width = 200,api_
 #' @param path Address where the image will be saved. Default "getwd()"
 #' @param name Name that the image will take. Default "client_farm_dare_RGB"
 #' @keywords plot rgb raster and keep in local
+#' @importFrom utils download.file
 #' @export
 #' @examples
 #' get_rgb_plot(client='clientexample', farm='farm1example', date = '2021-02-07', email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)

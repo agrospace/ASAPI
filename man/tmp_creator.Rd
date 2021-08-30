@@ -12,7 +12,3 @@ tmp_creator(reset = FALSE)
 \description{
 This function create a temporal folder in local directory
 }
-\examples{
-tmp_creator()
-
-}
