@@ -95,9 +95,12 @@ read_rst = function(client,farm,sensor,index,date,email,api_key,dash_param=FALSE
                              date=date, email=email,
                              api_key=api_key, dash_param=dash_param)
 
-    rst = raster::writeRaster(rst$rst,
-                              filename=file.path(tmp, paste0(id_rst,".grd")),
-                              bandorder='BIL', overwrite=TRUE)
+    if(!stringr::str_detect(string=rst, pattern ="Empty variable")[1]){
+      rst = raster::writeRaster(rst$rst,
+                                filename=file.path(tmp, paste0(id_rst,".grd")),
+                                bandorder='BIL', overwrite=TRUE)
+    }
+
   }
   return(list(rst=rst,file=id_rst))
 }
