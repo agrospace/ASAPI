@@ -98,10 +98,13 @@ read_rst = function(client,farm,sensor,index,date,email,api_key,dash_param=FALSE
       rst = raster::writeRaster(rst$rst,
                                 filename=file.path(tmp, paste0(id_rst,".grd")),
                                 bandorder='BIL', overwrite=TRUE)
+      status = 200
+    }else{
+      status = 400
     }
 
   }
-  return(list(rst=rst,file=id_rst))
+  return(list(rst=rst,file=id_rst,status=status))
 }
 
 
