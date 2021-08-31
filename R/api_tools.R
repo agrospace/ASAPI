@@ -92,8 +92,9 @@ read_rst = function(client,farm,sensor,index,date,email,api_key,dash_param=FALSE
                              sensor=sensor, index=index,
                              date=date, email=email,
                              api_key=api_key, dash_param=dash_param)
-
-    if(!stringr::str_detect(string=rst, pattern ="Empty variable")[1]){
+    empty = !stringr::str_detect(string=rst, pattern ="Empty variable")[1]
+    error = !stringr::str_detect(string=rst, pattern ="Error")[1]
+    if(empty|| error){
       rst = raster::writeRaster(rst$rst,
                                 filename=file.path(tmp, paste0(id_rst,".grd")),
                                 bandorder='BIL', overwrite=TRUE)
