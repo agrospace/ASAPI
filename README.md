@@ -17,13 +17,6 @@
 
 ## Installation
 
-## To install the package 
-1. create token in https://github.com/settings/tokens/new
-2. devtools::install_github(repo = "BloomAlert/bloomieR",
-                         ref = "main",
-                         auth_token = your_token,
-                         force = TRUE)
-3. Set ".Renviron"" and store gargle credentials in ".R/gargle""
 
 ``` r
 remotes::install_github('agrospace/ASAPI')

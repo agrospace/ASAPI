@@ -1,6 +1,6 @@
 Package: ASAPI
 Title: Agro Space API Connector Package
-Version: 0.0.0.99982
+Version: 0.0.1.0
 Description: Retrieve spatial analysis of remote sensing and meteo data from Agro Space API.
 Authors@R: person(given = "Tomás",
            family = "Acuña Ruz",

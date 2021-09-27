@@ -32,10 +32,11 @@ tmp_creator()
 #' @param dash_param AgroSpace internal use parameter. Default value FALSE.
 #' @param reset reset temporal folder
 #' @keywords vectorial data as sf object
-#' @export
 #' @examples
+#'  \dontrun{
 #' read_shape(client='clientexample', farm='farm1example',email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_ke)
-#'
+#'}
+#' @export
 read_shape = function(client,farm,email,api_key,dash_param=FALSE,reset=FALSE){
   tmp = tmp_creator(reset = reset)
   id_farm = paste(client,farm,collapse = "_")
@@ -70,10 +71,11 @@ read_shape = function(client,farm,email,api_key,dash_param=FALSE,reset=FALSE){
 #' @param dash_param AgroSpace internal use parameter. Default value FALSE.
 #' @param reset reset temporal folder
 #' @keywords read raster and keep in local
-#' @export
 #' @examples
+#' \dontrun{
 #' read_rst(client='clientexample', farm='farm1example', sensor = "S2SR", index = "NDVI", date = '2021-02-07', email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
-#'
+#'}
+#' @export
 read_rst = function(client,farm,sensor,index,date,email,api_key,dash_param=FALSE,reset=FALSE){
   tmp = tmp_creator(reset = reset)
   id_rst = paste(client,farm,sensor,index,date,sep="_")
@@ -124,8 +126,9 @@ read_rst = function(client,farm,sensor,index,date,email,api_key,dash_param=FALSE
 #' @keywords plot rgb raster and keep in local
 #' @export
 #' @examples
+#' \dontrun{
 #' post_rgb_plot(client='clientexample', farm='farm1example', date = '2021-02-07', email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
-#'
+#'}
 post_rgb_plot = function(client, farm, date,email, height = 200,width = 200,api_key, url = "https://api.agrospace.cl"){
   param_query = list(client = client, farm = farm, date = date,height=height, width=width,email = email, api_key = api_key)
   res = httr::POST(url = asapi_url(url = url, endpoint = "/plot"),
@@ -140,21 +143,22 @@ post_rgb_plot = function(client, farm, date,email, height = 200,width = 200,api_
 #### IMAGE ####
 #' Plot RGB
 #'
-#' This function allows you to check if the raster was downlaod before in order to avoid repeated downloading of data
+#' This function allows you to check if the raster was download before in order to avoid repeated downloading of data
 #' @param client Client name
 #' @param farm email of user
 #' @param date URL for dev purpose
-#' @param email Email of custome user
+#' @param email Email of customer user
 #' @param api_key Api Key obtain from /auth
 #' @param url URL for dev purpose
 #' @param path Address where the image will be saved. Default "getwd()"
 #' @param name Name that the image will take. Default "client_farm_dare_RGB"
 #' @keywords plot rgb raster and keep in local
 #' @importFrom utils download.file
-#' @export
 #' @examples
+#' \dontrun{
 #' get_rgb_plot(client='clientexample', farm='farm1example', date = '2021-02-07', email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
-#'
+#'}
+#' @export
 get_rgb_plot = function(client, farm, date,email, api_key,url = "https://api.agrospace.cl",
                         path=getwd(), name=NULL){
   param_query = list(client = client, farm = farm, date = date,email = email, api_key = api_key)

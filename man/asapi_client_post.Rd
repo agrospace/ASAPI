@@ -26,8 +26,5 @@ asapi_client_post(
 \description{
 This function allows you to POST New Client with the API and retrieve your API KEY
 }
-\examples{
-asapi_client_post(client_name="New Client Name", email="newclient@gmail.com", contact="Contact Name", api_key="...")
-}
 \keyword{API_KEY,}
 \keyword{api_key}

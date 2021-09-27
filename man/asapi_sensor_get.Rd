@@ -29,10 +29,5 @@ asapi_sensor_get(
 \description{
 This function allows you to GET Sensor information of client
 }
-\examples{
-asapi_sensor_get(client="clientexample", email="user.example@agrospace.cl",
-farm="farm1example", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
-
-}
 \keyword{API_KEY,}
 \keyword{api_key}

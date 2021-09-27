@@ -20,9 +20,5 @@ asapi_new_apikey(
 \description{
 This function Reset your AgroSpace API Key, entering your session.
 }
-\examples{
-asapi_new_apikey(email="user.example@agrospace.cl", password="contra1234")
-
-}
 \keyword{API_KEY,}
 \keyword{api_key}

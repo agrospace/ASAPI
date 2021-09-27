@@ -44,10 +44,5 @@ asapi_terramodels_post(
 \description{
 This function set new task for downloading image indexes. This may take a some minutes.
 }
-\examples{
-asapi_terramodels_post(client="clientexample", farm="farm1example",
-sensor="S2SR", index="NDVI", date_start="2019-12-05", date_end="2021-02-07", type_export="UPGCLOUD", email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key, url="https://api.agrospace.cl")
-
-}
 \keyword{API_KEY,}
 \keyword{api_key}

@@ -15,7 +15,9 @@ asapi_logo(client, url = "https://api.agrospace.cl")
 This function returns the url of a client's logo with the API
 }
 \examples{
+ \dontrun{
 asapi_logo(client="clientexample")
+}
 }
 \keyword{API_KEY,}
 \keyword{api_key}

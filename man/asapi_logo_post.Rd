@@ -21,7 +21,9 @@ asapi_logo_post(client, path, email, api_key, url = "https://api.agrospace.cl")
 This function upload a client's logo with the API
 }
 \examples{
+\dontrun{
 asapi_logo_post(client="clientexample", path="https://pbs.twimg.com/profile_images/1063094754228011008/-AN6PKnB.jpg", email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
+}
 }
 \keyword{API_KEY,}
 \keyword{api_key}

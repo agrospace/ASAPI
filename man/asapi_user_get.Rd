@@ -29,8 +29,5 @@ asapi_user_get(
 \description{
 This function allows you to GET User information with the API and retrieve your API KEY
 }
-\examples{
-asapi_user_get(client="clientexample", email="user.example@agrospace.cl", user="userexample", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
-}
 \keyword{API_KEY,}
 \keyword{api_key}

@@ -44,10 +44,5 @@ asapi_table(
 \description{
 This function allows you to GET Client Farms  information with the API
 }
-\examples{
-asapi_table(client="clientexample", farm="farm1example",
-tableid="levelzero", sensor="S2SR", index="NDVI", date_start="2019-12-05", date_end="2021-02-07", email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key, url="https://api.agrospace.cl")
-
-}
 \keyword{API_KEY,}
 \keyword{api_key}
