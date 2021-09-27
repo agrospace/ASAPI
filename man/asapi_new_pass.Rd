@@ -23,9 +23,5 @@ asapi_new_pass(
 \description{
 This function Reset your user Password, entering your session.
 }
-\examples{
-# asapi_new_pass(email="user.example@agrospace.cl", old_password="contra1234", new_password="contra1234")
-
-}
 \keyword{API_KEY,}
 \keyword{api_key}

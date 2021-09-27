@@ -38,9 +38,4 @@ asapi_farm_put(
 \description{
 This function allows you to PUT farm new information with the API and retrieve your API KEY
 }
-\examples{
-asapi_farm_put(client="clientexample", farm="newfarmexample",
-new_region="Region de los Lagos", email_admin="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
-
-}
 \keyword{Farms}

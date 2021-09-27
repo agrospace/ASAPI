@@ -36,8 +36,9 @@ post_rgb_plot(
 This function allows you to check if the raster was downlaod before in order to avoid repeated downloading of data
 }
 \examples{
+\dontrun{
 post_rgb_plot(client='clientexample', farm='farm1example', date = '2021-02-07', email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
-
+}
 }
 \keyword{and}
 \keyword{in}

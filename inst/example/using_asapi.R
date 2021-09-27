@@ -60,3 +60,9 @@ index = table_S2SR$index
 rst = asapi_image(client, farm, sensor, index, date, email,
                   api_key, url)
 raster::plot(rst$rst)
+
+rst = asapi_tiles(client, farm, sensor, index, date, email,
+                  api_key, url)
+raster::plot(rst$rst)
+
+

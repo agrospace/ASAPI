@@ -26,8 +26,5 @@ asapi_user_delete(
 \description{
 This function allows you to DELETE User information with the API and retrieve your API KEY
 }
-\examples{
-asapi_user_delete(client="clientexample", email_deleted="newuser.example@agrospace.cl", email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
-}
 \keyword{API_KEY,}
 \keyword{api_key}

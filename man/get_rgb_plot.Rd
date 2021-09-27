@@ -22,7 +22,7 @@ get_rgb_plot(
 
 \item{date}{URL for dev purpose}
 
-\item{email}{Email of custome user}
+\item{email}{Email of customer user}
 
 \item{api_key}{Api Key obtain from /auth}
 
@@ -33,11 +33,12 @@ get_rgb_plot(
 \item{name}{Name that the image will take. Default "client_farm_dare_RGB"}
 }
 \description{
-This function allows you to check if the raster was downlaod before in order to avoid repeated downloading of data
+This function allows you to check if the raster was download before in order to avoid repeated downloading of data
 }
 \examples{
+\dontrun{
 get_rgb_plot(client='clientexample', farm='farm1example', date = '2021-02-07', email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
-
+}
 }
 \keyword{and}
 \keyword{in}

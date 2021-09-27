@@ -17,7 +17,9 @@ asapi_layout(client, farm, url = "https://api.agrospace.cl")
 This function returns the url of a farm's layout with the API
 }
 \examples{
+ \dontrun{
 asapi_layout(client="clientexample", farm="farm1example")
+}
 }
 \keyword{API_KEY,}
 \keyword{api_key}

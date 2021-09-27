@@ -23,8 +23,9 @@ read_shape(client, farm, email, api_key, dash_param = FALSE, reset = FALSE)
 This function allows you to check if the raster was downlaod before in order to avoid repeated downloading of data
 }
 \examples{
+ \dontrun{
 read_shape(client='clientexample', farm='farm1example',email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_ke)
-
+}
 }
 \keyword{as}
 \keyword{data}

@@ -14,7 +14,3 @@ asapi_url(url = "https://api.agrospace.cl", endpoint)
 \description{
 Generical function to translate json to data.frame
 }
-\examples{
-asapi_url(url='https://api.agrospace.cl',endpoint='/farm')
-
-}

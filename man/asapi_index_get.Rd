@@ -32,10 +32,5 @@ asapi_index_get(
 \description{
 This function allows you to GET Index information of client
 }
-\examples{
-asapi_index_get(client="clientexample", email="user.example@agrospace.cl",
-farm="farm1example", sensor="S2SR", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
-
-}
 \keyword{API_KEY,}
 \keyword{api_key}
