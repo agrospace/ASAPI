@@ -1,0 +1,17 @@
+Package: ASAPI
+Title: Agro Space API Connector Package
+Version: 0.0.0.99982
+Description: Retrieve spatial analysis of remote sensing and meteo data from Agro Space API.
+Authors@R: person(given = "Tomás",
+           family = "Acuña Ruz",
+           role = c("aut", "cre"),
+           email = "tomasacuna@ug.uchile.cl")
+URL: https://api.agrospace.cl
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Suggests:knitr,qpdf,markdown
+VignetteBuilder:knitr
+Imports: base,jsonlite,kableExtra,httr,rgdal,raster,sf,stringr,utils

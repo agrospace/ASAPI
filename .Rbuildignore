@@ -1,0 +1,13 @@
+^ASAPI\.Rproj$
+^\.Rproj\.user$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.httr-oauth$
+^LICENSE\.md$
+^.github
+^example$
+^test$
+^www$
+^tmp\$
+^README.Rmd
