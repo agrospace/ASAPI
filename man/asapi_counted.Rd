@@ -19,10 +19,3 @@ asapi_counted(client, email, api_key, url = "https://api.agrospace.cl")
 This function get list of counted calls for a user.
 Agrospace members only, with apikey master.
 }
-\examples{
-\dontrun{
-asapi_counted(client="clientexample", email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
- }
-}
-\keyword{API_KEY,}
-\keyword{api_key}

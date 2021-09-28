@@ -23,5 +23,3 @@ asapi_new_pass(
 \description{
 This function Reset your user Password, entering your session.
 }
-\keyword{API_KEY,}
-\keyword{api_key}

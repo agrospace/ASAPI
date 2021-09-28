@@ -26,5 +26,3 @@ asapi_user_delete(
 \description{
 This function allows you to DELETE User information with the API and retrieve your API KEY
 }
-\keyword{API_KEY,}
-\keyword{api_key}

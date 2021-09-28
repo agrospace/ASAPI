@@ -15,5 +15,3 @@ asapi_features_post(api_key, url = "https://api.agrospace.cl")
 This function Update feature info from googledrive to mongoDB.
 Agrospace members only, with apikey master.
 }
-\keyword{API_KEY,}
-\keyword{api_key}

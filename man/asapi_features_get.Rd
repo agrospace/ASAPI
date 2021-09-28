@@ -19,5 +19,3 @@ asapi_features_get(index, farm_type, api_key, url = "https://api.agrospace.cl")
 This function allows you to GET Features information like Index, Labels, Class, Pallete, others.
 Agrospace members only, with apikey master.
 }
-\keyword{API_KEY,}
-\keyword{api_key}

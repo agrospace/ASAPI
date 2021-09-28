@@ -29,5 +29,3 @@ asapi_user_get(
 \description{
 This function allows you to GET User information with the API and retrieve your API KEY
 }
-\keyword{API_KEY,}
-\keyword{api_key}

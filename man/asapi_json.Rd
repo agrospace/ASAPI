@@ -12,4 +12,3 @@ asapi_json(res = NULL)
 \description{
 Generical function to translate json to data.frame
 }
-\keyword{response}

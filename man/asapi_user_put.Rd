@@ -35,5 +35,3 @@ asapi_user_put(
 \description{
 This function allows you to PUT User new information with the API and retrieve your API KEY
 }
-\keyword{API_KEY,}
-\keyword{api_key}

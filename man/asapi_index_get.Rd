@@ -32,5 +32,3 @@ asapi_index_get(
 \description{
 This function allows you to GET Index information of client
 }
-\keyword{API_KEY,}
-\keyword{api_key}

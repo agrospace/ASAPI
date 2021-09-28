@@ -44,5 +44,3 @@ asapi_table_cover(
 \description{
 This function allows you to GET Cover information with the API
 }
-\keyword{API_KEY,}
-\keyword{api_key}

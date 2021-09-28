@@ -38,5 +38,3 @@ asapi_tiles(
 \description{
 This function brings a tiles to render directly in leaflet or QGIS
 }
-\keyword{leaflet}
-\keyword{render}

@@ -44,5 +44,3 @@ asapi_table(
 \description{
 This function allows you to GET Client Farms  information with the API
 }
-\keyword{API_KEY,}
-\keyword{api_key}

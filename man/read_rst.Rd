@@ -38,14 +38,3 @@ read_rst(
 \description{
 This function allows you to check if the raster was downlaod before in order to avoid repeated downloading of data
 }
-\examples{
-\dontrun{
-read_rst(client='clientexample', farm='farm1example', sensor = "S2SR", index = "NDVI", date = '2021-02-07', email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
-}
-}
-\keyword{and}
-\keyword{in}
-\keyword{keep}
-\keyword{local}
-\keyword{raster}
-\keyword{read}

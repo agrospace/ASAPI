@@ -26,5 +26,3 @@ asapi_client_post(
 \description{
 This function allows you to POST New Client with the API and retrieve your API KEY
 }
-\keyword{API_KEY,}
-\keyword{api_key}

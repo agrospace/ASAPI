@@ -14,5 +14,3 @@ asapi_planes_get(plan, url = "https://api.agrospace.cl")
 \description{
 This function returns information on plans, with the API.
 }
-\keyword{API_KEY,}
-\keyword{api_key}

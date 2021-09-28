@@ -47,5 +47,3 @@ asapi_ts_image(
 \description{
 This function allows you to GET the time series (ts) of raster images.
 }
-\keyword{API_KEY,}
-\keyword{api_key}

@@ -38,4 +38,3 @@ asapi_farm_put(
 \description{
 This function allows you to PUT farm new information with the API and retrieve your API KEY
 }
-\keyword{Farms}

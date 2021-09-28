@@ -13,7 +13,7 @@
 -   Ready to use!
 
 **OpenAPI** Full documentation in
-[api.agrospace.cl](api.agrospace.cl/doc)
+[api.agrospace.cl](https://api.agrospace.cl/doc)
 
 ## Installation
 

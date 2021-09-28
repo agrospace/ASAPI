@@ -29,5 +29,3 @@ asapi_sensor_get(
 \description{
 This function allows you to GET Sensor information of client
 }
-\keyword{API_KEY,}
-\keyword{api_key}
