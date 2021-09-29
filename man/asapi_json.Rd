@@ -9,6 +9,9 @@ asapi_json(res = NULL)
 \arguments{
 \item{res}{Respone from api.agrospace.cl}
 }
+\value{
+A JSON formatted objected
+}
 \description{
 Generical function to translate json to data.frame
 }
