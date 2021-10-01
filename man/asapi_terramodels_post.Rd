@@ -44,5 +44,3 @@ asapi_terramodels_post(
 \description{
 This function set new task for downloading image indexes. This may take a some minutes.
 }
-\keyword{API_KEY,}
-\keyword{api_key}

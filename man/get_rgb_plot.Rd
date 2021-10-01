@@ -35,15 +35,3 @@ get_rgb_plot(
 \description{
 This function allows you to check if the raster was download before in order to avoid repeated downloading of data
 }
-\examples{
-\dontrun{
-get_rgb_plot(client='clientexample', farm='farm1example', date = '2021-02-07', email="user.example@agrospace.cl", api_key=asapi_auth(email="user.example@agrospace.cl", password="contra1234")$api_key)
-}
-}
-\keyword{and}
-\keyword{in}
-\keyword{keep}
-\keyword{local}
-\keyword{plot}
-\keyword{raster}
-\keyword{rgb}

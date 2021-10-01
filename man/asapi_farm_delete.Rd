@@ -26,4 +26,3 @@ asapi_farm_delete(
 \description{
 This function allows you to DELETE Farms information with the API and retrieve your API KEY
 }
-\keyword{Farms}

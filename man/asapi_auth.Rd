@@ -16,5 +16,3 @@ asapi_auth(email = NULL, password = NULL, url = "https://api.agrospace.cl")
 \description{
 This function retrieve your AgroSpace API KEY
 }
-\keyword{API_KEY,}
-\keyword{api_key}

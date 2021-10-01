@@ -19,5 +19,3 @@ asapi_list(client, type, api_key, url = "https://api.agrospace.cl")
 This function allows you to GET list of farms or users of a client.
 Agrospace members only, with apikey master.
 }
-\keyword{API_KEY,}
-\keyword{api_key}

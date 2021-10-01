@@ -38,5 +38,3 @@ asapi_image(
 \description{
 This function allows you to GET Client - Farm raster information with the API
 }
-\keyword{API_KEY,}
-\keyword{api_key}

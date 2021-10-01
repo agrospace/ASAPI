@@ -29,4 +29,3 @@ asapi_farm_post(
 \description{
 This function allows you to POST new Farm with the API and retrieve your API KEY
 }
-\keyword{Farms}

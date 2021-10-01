@@ -35,5 +35,3 @@ asapi_user_post(
 \description{
 This function allows you to POST New User with the API and retrieve your API KEY
 }
-\keyword{API_KEY,}
-\keyword{api_key}

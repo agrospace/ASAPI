@@ -29,4 +29,3 @@ asapi_farm_get(
 \description{
 This function allows you to GET Farms information with the API and retrieve your API KEY
 }
-\keyword{Farms}
