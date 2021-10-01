@@ -9,6 +9,7 @@
 #'
 #' Generical function to translate json to data.frame
 #' @param res Respone from api.agrospace.cl
+#' @return A JSON formatted objected
 #' @export
 asapi_json = function(res = NULL){
   if(is.null(res) || length(res)==0 ) {"Please resolve res content"}
