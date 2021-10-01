@@ -77,7 +77,7 @@ read_rst = function(client,farm,sensor,index,date,email,api_key,dash_param=FALSE
     }else{
       rst = raster::raster(file)
     }
-
+  status=200
   }else{
     message("Downloading image: ",id_rst)
     rst = ASAPI::asapi_image(client = client, farm = farm,
