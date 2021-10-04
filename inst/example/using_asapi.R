@@ -3,7 +3,6 @@ library(jsonlite)
 library(dplyr)
 
 url = "https://api.agrospace.cl"
-
 #     Login    #
 #--------------#
 email = "user.example@agrospace.cl"

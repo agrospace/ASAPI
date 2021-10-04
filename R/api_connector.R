@@ -183,7 +183,7 @@ asapi_user_put = function(client, email, new_username="NULL", new_email="NULL", 
 
 
   if(res$status_code==201){
-    res = httr::content(res)
+    res = httr::content(res,as = "text", encoding = "UTF-8")
   }else{
     res = httr::content(res,as = "text", encoding = "UTF-8")
     message(res)
@@ -325,7 +325,7 @@ asapi_farm_post = function(client, farm_name, geojson="NULL", email, api_key, ur
                   query = param_query)
 
   if(res$status_code==201){
-    res = httr::content(res)
+    res = httr::content(res,as = "text", encoding = "UTF-8")
   }else{
     res = httr::content(res,as = "text", encoding = "UTF-8")
     message(res)
@@ -353,7 +353,7 @@ asapi_farm_put = function(client, farm, new_type="NULL", new_region="NULL", new_
                   query = param_query)
 
   if(res$status_code==201){
-    res = httr::content(res)
+    res = httr::content(res,as = "text", encoding = "UTF-8")
   }else{
     res = httr::content(res,as = "text", encoding = "UTF-8")
     message(res)
@@ -481,7 +481,7 @@ asapi_sensor_get = function(client, email, farm, api_key, url="https://api.agros
   if(res$status_code==200){
     res = asapi_json(res)
   }else{
-    res = httr::content(res)
+    res = httr::content(res,as = "text", encoding = "UTF-8")
   }
   return(res)
 }
@@ -508,7 +508,7 @@ asapi_index_get = function(client, email, farm, sensor, api_key, url="https://ap
   res = httr::GET(url = asapi_url(url = url,endpoint = '/available_index'),
                   query = param_query)
 
-  res = httr::content(res)
+  res = httr::content(res,as = "text", encoding = "UTF-8")
   return(res)
 }
 
@@ -722,7 +722,7 @@ asapi_list = function(client, type, api_key, url="https://api.agrospace.cl"){
                      api_key = api_key)
   res = httr::GET(url = asapi_url(url = url,endpoint = '/list'),
                   query = param_query)
-  res = httr::content(res)
+  res = httr::content(res,as = "text", encoding = "UTF-8")
   return(res)
 }
 
