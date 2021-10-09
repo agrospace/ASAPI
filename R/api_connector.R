@@ -183,7 +183,7 @@ asapi_user_put = function(client, email, new_username="NULL", new_email="NULL", 
 
 
   if(res$status_code==201){
-    res = httr::content(res)
+    res = httr::content(res,as = "text", encoding = "UTF-8")
   }else{
     res = httr::content(res,as = "text", encoding = "UTF-8")
     message(res)
@@ -325,7 +325,7 @@ asapi_farm_post = function(client, farm_name, geojson="NULL", email, api_key, ur
                   query = param_query)
 
   if(res$status_code==201){
-    res = httr::content(res)
+    res = httr::content(res,as = "text", encoding = "UTF-8")
   }else{
     res = httr::content(res,as = "text", encoding = "UTF-8")
     message(res)
@@ -353,7 +353,7 @@ asapi_farm_put = function(client, farm, new_type="NULL", new_region="NULL", new_
                   query = param_query)
 
   if(res$status_code==201){
-    res = httr::content(res)
+    res = httr::content(res,as = "text", encoding = "UTF-8")
   }else{
     res = httr::content(res,as = "text", encoding = "UTF-8")
     message(res)
@@ -481,7 +481,7 @@ asapi_sensor_get = function(client, email, farm, api_key, url="https://api.agros
   if(res$status_code==200){
     res = asapi_json(res)
   }else{
-    res = httr::content(res)
+    res = httr::content(res,as = "text", encoding = "UTF-8")
   }
   return(res)
 }
@@ -508,7 +508,7 @@ asapi_index_get = function(client, email, farm, sensor, api_key, url="https://ap
   res = httr::GET(url = asapi_url(url = url,endpoint = '/available_index'),
                   query = param_query)
 
-  res = httr::content(res)
+  res = httr::content(res,as = "text", encoding = "UTF-8")
   return(res)
 }
 
@@ -567,20 +567,22 @@ asapi_image = function(client, farm, sensor, index, date, email, api_key, url="h
 #' @param farm Farm name to query
 #' @param sensor Sensor
 #' @param index Index
-#' @param date imagen date
+#' @param date imagen date: prod or dev
+#' @param datasetid Dataset prod or dev
 #' @param email email of user
 #' @param api_key Api Key obtain from /auth
 #' @param dash_param AgroSpace internal use parameter. Default value FALSE
 #' @param url URL for dev purpose
 #' @export
-asapi_tiles = function(client, farm, sensor, index, date, email, api_key, url="https://api.agrospace.cl", dash_param=FALSE){
-  param_query = list(client=client, farm=farm, sensor=sensor, index=index,
-                     date=date, email=email, api_key=api_key, dash_param=dash_param)
+asapi_tiles = function(client, farm, sensor, index, date,datasetid, email, api_key, url="https://api.agrospace.cl", dash_param=FALSE){
+
+   param_query = list(client=client, farm=farm, sensor=sensor, index=index,
+                     date=date, datasetid=datasetid,email=email, api_key=api_key, dash_param=dash_param)
 
   res = httr::GET(url = asapi_url(url = url,endpoint = '/tiles'),
                   query = param_query)
   if(res$status_code==200){
-    res = httr::content(res,as = "text", encoding = "UTF-8")
+    res = asapi_json(res)
     return(res)
   }else{
     message(httr::content(res,as = "text", encoding = "UTF-8"))
@@ -722,7 +724,7 @@ asapi_list = function(client, type, api_key, url="https://api.agrospace.cl"){
                      api_key = api_key)
   res = httr::GET(url = asapi_url(url = url,endpoint = '/list'),
                   query = param_query)
-  res = httr::content(res)
+  res = httr::content(res,as = "text", encoding = "UTF-8")
   return(res)
 }
 
