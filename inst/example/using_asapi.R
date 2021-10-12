@@ -45,6 +45,10 @@ table = asapi_table(client, farm, tableid, sensor, index,
                     date_start, date_end, email, api_key, url)
 table
 
+
+asapi_index_get(client, email, farm,sensor, api_key)
+
+
 # ALL case
 sensor = "ALL"
 index = "ALL"
