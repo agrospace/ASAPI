@@ -20,6 +20,8 @@ user = auth$user
 #------------------------#
 asapi_client_get(client, email, api_key, url)
 
+asapi_list(client, "farm", api_key)
+asapi_list(client, "user", api_key)
 
 # Get user information #
 #----------------------#
