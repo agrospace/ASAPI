@@ -724,11 +724,8 @@ asapi_list = function(client, type, api_key, url="https://api.agrospace.cl"){
                      api_key = api_key)
   res = httr::GET(url = asapi_url(url = url,endpoint = '/list'),
                   query = param_query)
-  if(type=="farm"){
-    res = asapi_json(res)
-  }else{
-    res = httr::content(res, as = "text", encoding = "UTF-8")
-  }
+  res = asapi_json(res)
+
   return(res)
 }
 

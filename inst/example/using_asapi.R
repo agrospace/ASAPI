@@ -32,7 +32,7 @@ asapi_user_get(client, email, user, api_key, url)
 #----------------------#
 farm = "farm1example"
 asapi_farm_get(client, farm, email, api_key, url)
-
+asapi_sensor_get(client,email,farm,api_key)
 
 # Get bigquery information #
 #--------------------------#
