@@ -508,7 +508,7 @@ asapi_index_get = function(client, email, farm, sensor, api_key, url="https://ap
   res = httr::GET(url = asapi_url(url = url,endpoint = '/available_index'),
                   query = param_query)
 
-  res = httr::content(res,as = "text", encoding = "UTF-8")
+  res = asapi_json(res)
   return(res)
 }
 
