@@ -3,6 +3,7 @@ library(jsonlite)
 library(dplyr)
 
 url = "https://api.agrospace.cl"
+url = "http://localhost:8080"
 #     Login    #
 #--------------#
 email = "user.example@agrospace.cl"
@@ -55,6 +56,9 @@ index = "ALL"
 table = asapi_table(client, farm, tableid, sensor, index,
                     date_start, date_end, email, api_key, url)
 table
+
+table_stats = asapi_table_stats(client, farm, datasetid,tableid, email, api_key, url)
+
 
 #  Get Raster  #
 #--------------#
