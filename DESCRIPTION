@@ -1,6 +1,6 @@
 Package: ASAPI
 Title: 'Agro Space API' Connector Package
-Version: 0.0.1.0.02
+Version: 0.0.1.0.03
 Description: Retrieve spatial analysis of remote sensing and meteorological data from 'Agro Space API' <https://api.agrospace.cl/>.
 Authors@R: person(given = "Tomás",
            family = "Acuña Ruz",
