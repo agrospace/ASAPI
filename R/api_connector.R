@@ -421,6 +421,35 @@ asapi_table = function(client, farm, tableid, sensor, index, date_start, date_en
   return(res)
 }
 
+#' The Table GET Function
+#'
+#' This function allows you to GET Client Farms  information with the API
+#' @param client Client name
+#' @param farm Farm name to query
+#' @param datasetid dataset prod or dev
+#' @param tableid The mean values for the field (levelzero) or for each paddock (levelone)
+#' @param email email of user
+#' @param api_key Api Key obtain from /auth
+#' @param dash_param AgroSpace internal use parameter. Default value FALSE
+#' @param url URL for dev purpose
+#' @export
+asapi_table_stats = function(client, farm, datasetid,tableid, email,
+                             api_key, url="https://api.agrospace.cl", dash_param=FALSE){
+  param_query = list(client=client, farm=farm, datasetid=datasetid,tableid=tableid,
+                     email=email, api_key=api_key, dash_param=dash_param)
+
+  res = httr::GET(url = asapi_url(url = url,endpoint = '/table_stats'),
+                  query = param_query)
+
+  if(res$status_code==200){
+    res = do.call(cbind.data.frame, asapi_json(res))
+  }else{
+    res = httr::content(res,as = "text", encoding = "UTF-8")
+    message(res)
+  }
+
+  return(res)
+}
 
 #' The Table Cover GET Function
 #'
