@@ -11,6 +11,12 @@ vignette: >
   %\VignetteIndexEntry{NEWS}
   %\VignetteEncoding{UTF-8}
 ---
-# ASAPI 0.0.1.0
 
-- Resolve Packages to work in CRAN
+# *News*
+
+# ASAPI 0.0.1.0.05 (2021-11-21)
+
+## Resolve Monthly stats month
+
+## ASAPI 0.0.1.0
+- Resolve Packages to work without warnings

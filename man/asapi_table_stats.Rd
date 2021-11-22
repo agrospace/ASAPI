@@ -9,6 +9,7 @@ asapi_table_stats(
   farm,
   datasetid,
   tableid,
+  month,
   email,
   api_key,
   url = "https://api.agrospace.cl",
@@ -23,6 +24,8 @@ asapi_table_stats(
 \item{datasetid}{dataset prod or dev}
 
 \item{tableid}{The mean values for the field (levelzero) or for each paddock (levelone)}
+
+\item{month}{Boolean vaule TRUE or FALSE to retrieve monthly stats (TRUE)}
 
 \item{email}{email of user}
 
