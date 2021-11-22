@@ -428,15 +428,16 @@ asapi_table = function(client, farm, tableid, sensor, index, date_start, date_en
 #' @param farm Farm name to query
 #' @param datasetid dataset prod or dev
 #' @param tableid The mean values for the field (levelzero) or for each paddock (levelone)
+#' @param month Boolean vaule TRUE or FALSE to retrieve monthly stats (TRUE)
 #' @param email email of user
 #' @param api_key Api Key obtain from /auth
 #' @param dash_param AgroSpace internal use parameter. Default value FALSE
 #' @param url URL for dev purpose
 #' @export
-asapi_table_stats = function(client, farm, datasetid,tableid, email,
+asapi_table_stats = function(client, farm, datasetid, tableid, month, email,
                              api_key, url="https://api.agrospace.cl", dash_param=FALSE){
   param_query = list(client=client, farm=farm, datasetid=datasetid,tableid=tableid,
-                     email=email, api_key=api_key, dash_param=dash_param)
+                     month=month,email=email, api_key=api_key, dash_param=dash_param)
 
   res = httr::GET(url = asapi_url(url = url,endpoint = '/table_stats'),
                   query = param_query)
